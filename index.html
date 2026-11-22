@@ -1,0 +1,255 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Shlok Singh, ML projects and models</title>
+<meta name="description" content="Shlok Singh builds and deploys ML models. Third-year B.Tech student in AI and ML, looking for an ML internship.">
+<meta name="theme-color" content="#ffffff">
+<meta property="og:title" content="Shlok Singh, ML projects and models">
+<meta property="og:description" content="I build and deploy ML models. Looking for an ML internship.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://shlokisafk.github.io/">
+<meta property="og:image" content="https://shlokisafk.github.io/assets/pitwall.jpg">
+<meta property="og:image:alt" content="The PitWall dashboard, an F1 race predictor served from a Raspberry Pi.">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="canonical" href="https://shlokisafk.github.io/">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23fff'/%3E%3Cpath d='M4 9C12 30 22 30 28 6' fill='none' stroke='%230a0a0a' stroke-width='2.5'/%3E%3Ccircle cx='4' cy='9' r='3' fill='%230a0a0a'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300..700&family=JetBrains+Mono:wght@400;500&display=swap">
+<script>
+  /* Hide animated elements only when JS runs and motion is allowed. Fail open if the script never starts. */
+  (function () {
+    var d = document.documentElement;
+    if (!matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      d.classList.add('js');
+      window.__psafe = setTimeout(function () { d.classList.remove('js'); }, 5000);
+    }
+  })();
+</script>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="nav" id="top">
+  <a class="brand" href="#top" aria-label="Shlok Singh, back to top">Shlok Singh</a>
+  <nav class="nav-links" aria-label="Primary">
+    <a href="#projects">Projects</a>
+    <a href="#lab">Home lab</a>
+    <a href="#about">About</a>
+    <a href="#contact">Contact</a>
+    <a href="assets/Shlok-Singh-Resume.pdf" download>Resume (PDF)</a>
+  </nav>
+  <a class="nav-cta" href="mailto:singhshlok720@gmail.com">[ Email me ]</a>
+</header>
+
+<main id="main">
+
+  <section class="hero" id="hero" aria-labelledby="hero-title">
+    <div class="wrap">
+      <h1 id="hero-title" class="display" aria-label="I build and deploy ML models.">
+        <span class="ln" aria-hidden="true">I build and deploy</span>
+        <span class="ln" aria-hidden="true">ML models.</span>
+      </h1>
+      <p class="hero-sub">
+        Third-year B.Tech student in AI and ML at UPES, Dehradun.
+        <strong>Looking for an ML internship.</strong>
+      </p>
+    </div>
+
+    <p class="ping-line" id="live" hidden><span class="live-dot" id="live-dot" aria-hidden="true"></span><span id="live-txt">Asking the Raspberry Pi at pitwal.site…</span></p>
+    <button class="pause" id="pause" type="button" aria-pressed="false" hidden>Pause animation</button>
+    <div class="thread" aria-hidden="true">
+      <svg id="thread-svg" focusable="false">
+        <path id="thread-path" pathLength="1" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+        <g id="packets"></g>
+        <g id="node-me">
+          <circle class="n-ring" r="5" fill="none" stroke="currentColor" stroke-width="1.5" opacity="0"/>
+          <circle class="n-core" r="5" fill="currentColor"/>
+          <text class="n-label">me</text>
+        </g>
+        <g id="node-model">
+          <circle class="n-ring" r="5" fill="none" stroke="currentColor" stroke-width="1.5" opacity="0"/>
+          <circle class="n-core" r="5" fill="var(--paper)" stroke="currentColor" stroke-width="1.5"/>
+          <text class="n-label">model</text>
+        </g>
+      </svg>
+    </div>
+  </section>
+
+  <section class="section" id="projects" aria-labelledby="projects-title">
+    <div class="wrap">
+      <div class="sec-head">
+        <h2 id="projects-title">Selected projects</h2>
+        <a class="quiet" href="https://github.com/ShlokisAFK">All repositories on GitHub ↗</a>
+      </div>
+
+      <ul class="work">
+        <li class="work-row">
+          <div class="w-name">
+            <h3><a class="stretch" href="https://github.com/ShlokisAFK/PitWall">PitWall</a></h3>
+            <p class="meta">2026</p>
+          </div>
+          <div class="w-body">
+            <p>Predicts F1 finishing positions from qualifying gaps, recent form and circuit history. Trained on four seasons, served live from a Raspberry Pi 5.</p>
+            <p class="stack">XGBoost, FastAPI, FastF1, Raspberry Pi</p>
+            <p><a class="live" href="https://pitwal.site">pitwal.site, live ↗</a></p>
+          </div>
+          <div class="w-metrics">
+            <div class="metric">
+              <div class="m-top"><span>Podium accuracy</span><span class="m-val"><b data-count="93.3" data-dec="1">93.3</b>%</span></div>
+              <div class="bar" role="img" aria-label="Podium accuracy 93.3 percent"><i style="--v:93.3%"></i></div>
+            </div>
+            <div class="metric">
+              <div class="m-top"><span>Winner accuracy</span><span class="m-val"><b data-count="60" data-dec="0">60</b>%</span></div>
+              <div class="bar" role="img" aria-label="Winner accuracy 60 percent"><i style="--v:60%"></i></div>
+            </div>
+            <p class="note">First 15 races of 2026. Average position error: 1.06.</p>
+          </div>
+        </li>
+
+        <li class="work-row">
+          <div class="w-name">
+            <h3><a class="stretch" href="https://github.com/ShlokisAFK/malware-binary-classifier">Malware binary classifier</a></h3>
+            <p class="meta">2026</p>
+          </div>
+          <div class="w-body">
+            <p>Sorts 25 malware families by turning each binary into a grayscale image. Benchmarked ResNet18, GoogLeNet, LSTM and MLP baselines, with a variational autoencoder for augmentation.</p>
+            <p class="stack">PyTorch, ResNet18, GoogLeNet, VAE</p>
+          </div>
+          <div class="w-metrics">
+            <div class="metric">
+              <div class="m-top"><span>Test accuracy, ResNet18</span><span class="m-val"><b data-count="98.12" data-dec="2">98.12</b>%</span></div>
+              <div class="bar" role="img" aria-label="Test accuracy 98.12 percent"><i style="--v:98.12%"></i></div>
+            </div>
+            <p class="note">2.5 percentage points above the MLP baseline.</p>
+          </div>
+        </li>
+
+        <li class="work-row">
+          <div class="w-name">
+            <h3><a class="stretch" href="https://github.com/ShlokisAFK/MNIST-Digit-Classifier">MNIST from scratch</a></h3>
+            <p class="meta">2025</p>
+          </div>
+          <div class="w-body">
+            <p>A multi-layer neural network with the forward pass, activations and backpropagation all written by hand. No ML libraries.</p>
+            <p class="stack">Python, NumPy</p>
+          </div>
+          <div class="w-metrics">
+            <div class="metric">
+              <div class="m-top"><span>Validation accuracy</span><span class="m-val"><b data-count="90.78" data-dec="2">90.78</b>%</span></div>
+              <div class="bar" role="img" aria-label="Validation accuracy 90.78 percent"><i style="--v:90.78%"></i></div>
+            </div>
+            <p class="note">60k training samples.</p>
+          </div>
+        </li>
+
+        <li class="work-row">
+          <div class="w-name">
+            <h3><a class="stretch" href="https://github.com/ShlokisAFK/ai_agent">Autonomous AI agent</a></h3>
+            <p class="meta">2026</p>
+          </div>
+          <div class="w-body">
+            <p>A command-line agent that picks its own tools, searches the web in real time and remembers earlier sessions.</p>
+            <p class="stack">Python, LLaMA via Groq, Tavily</p>
+          </div>
+          <div class="w-metrics">
+            <p class="note solo">New tools plug in through a registry, so the core agent never changes.</p>
+          </div>
+        </li>
+
+        <li class="work-row">
+          <div class="w-name">
+            <h3><a class="stretch" href="https://github.com/ShlokisAFK/HeatSeek">HeatSeek</a></h3>
+            <p class="meta">2025</p>
+          </div>
+          <div class="w-body">
+            <p>A hide-and-seek game where the seeker learns your habits. It keeps a heatmap of where you hide across sessions and searches with BFS pathfinding.</p>
+            <p class="stack">Python, pygame, NumPy</p>
+          </div>
+          <div class="w-metrics">
+            <p class="note solo">70/30 explore and exploit balance, with line-of-sight detection.</p>
+          </div>
+        </li>
+      </ul>
+
+      <p class="also">Smaller tools: <a href="https://github.com/ShlokisAFK/DailyPulse">DailyPulse</a>, a <a href="https://github.com/ShlokisAFK/Binance-Futures-Testnet-Trading-Bot">Binance Futures testnet bot</a>, <a href="https://github.com/ShlokisAFK/Minitalker-AI">Minitalker-AI</a>.</p>
+    </div>
+  </section>
+
+  <section class="section" id="lab" aria-labelledby="lab-title">
+    <div class="wrap">
+      <div class="sec-head">
+        <h2 id="lab-title">Hosted at home</h2>
+        <a class="quiet" href="https://pitwal.site">Visit pitwal.site ↗</a>
+      </div>
+      <p class="lead">PitWall runs on a Raspberry Pi 5. A visitor's request enters through a Cloudflare Tunnel, nginx hands it to FastAPI, and the model answers.</p>
+
+      <ol class="flow" aria-label="Request path from visitor to model">
+        <li class="step"><span class="s-name">Visitor</span><span class="s-sub">pitwal.site</span></li>
+        <li class="step"><span class="s-name">Cloudflare Tunnel</span><span class="s-sub">routes traffic to the Pi</span></li>
+        <li class="pi">
+          <span class="pi-label">Raspberry Pi 5</span>
+          <ol>
+            <li class="step"><span class="s-name">nginx</span><span class="s-sub">reverse proxy</span></li>
+            <li class="step"><span class="s-name">FastAPI</span><span class="s-sub">XGBoost model</span></li>
+          </ol>
+        </li>
+      </ol>
+      <p class="note">Request path, left to right. Four stops from browser to prediction.</p>
+
+      <figure class="shot">
+        <a href="https://pitwal.site" aria-label="Open the live PitWall dashboard, pitwal.site">
+          <img src="assets/pitwall.jpg" width="1440" height="824" loading="lazy"
+               alt="The PitWall dashboard in its light theme: a countdown to the next Grand Prix and four model-performance cards showing 60 percent winner accuracy, 93.3 percent podium accuracy, 1.06 positions average error, and four seasons of training data.">
+        </a>
+        <figcaption class="note">What the Pi serves: the live dashboard at pitwal.site, captured 22 November 2026.</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section class="section" id="about" aria-labelledby="about-title">
+    <div class="wrap">
+     <div class="about about-rule">
+      <div>
+        <h2 id="about-title">About</h2>
+      </div>
+      <div class="about-body">
+        <p class="lead">I'm a third-year B.Tech student in Computer Science Engineering, specializing in AI and ML, at UPES in Dehradun. I like building a model end to end: data, training, evaluation and a live deployment you can open in a browser.</p>
+        <p>In June and July 2026 I interned with the Municipal Corporation of Mathura Vrindavan through the TULIP program (AICTE and MoHUA). I documented its waste-management software and automated traffic enforcement, and wrote reports on processing efficiency.</p>
+        <dl class="skills">
+          <div><dt>Languages</dt><dd>Python, C, Java, HTML, CSS</dd></div>
+          <div><dt>ML</dt><dd>PyTorch, TensorFlow, XGBoost, scikit-learn, Pandas, NumPy</dd></div>
+          <div><dt>Tools</dt><dd>Git, Linux, FastAPI, REST APIs, Raspberry Pi</dd></div>
+        </dl>
+      </div>
+     </div>
+    </div>
+  </section>
+
+  <section class="band" id="contact" aria-labelledby="contact-title">
+    <div class="wrap">
+      <h2 id="contact-title">Open to an ML internship.</h2>
+      <p class="band-sub">If your team works on model development, I'd like to hear from you.</p>
+      <a class="cmd" href="mailto:singhshlok720@gmail.com" aria-label="Email singhshlok720@gmail.com">
+        <span class="prompt" aria-hidden="true">&gt;</span>
+        <span class="cmd-text" aria-hidden="true">mail singhshlok720@gmail.com</span><span class="cur" aria-hidden="true"></span>
+      </a>
+      <footer class="foot">
+        <p>Shlok Singh, Dehradun, India</p>
+        <p><a href="https://github.com/ShlokisAFK">GitHub ↗</a> <a href="https://www.linkedin.com/in/shlokisafk/">LinkedIn ↗</a> <a href="assets/Shlok-Singh-Resume.pdf" download>Resume ↓</a> <a href="mailto:singhshlok720@gmail.com">Email ↗</a></p>
+      </footer>
+    </div>
+  </section>
+
+</main>
+
+<script src="vendor/gsap.min.js"></script>
+<script src="vendor/ScrollTrigger.min.js"></script>
+<script src="vendor/ScrambleTextPlugin.min.js"></script>
+<script src="js/main.js"></script>
+<script src="js/dust.js"></script>
+</body>
+</html>
