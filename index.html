@@ -87,7 +87,7 @@
       </div>
 
       <ul class="work">
-        <li class="work-row">
+        <li class="work-row" data-profile="model: XGBoost, early stopping|trained on: 1,836 rows, 2022-2025|features: form, circuit, quali gap|served: Raspberry Pi 5, FastAPI|podium: 93.3%  winner: 60%">
           <div class="w-name">
             <h3><a class="stretch" href="https://github.com/ShlokisAFK/PitWall">PitWall</a></h3>
             <p class="meta">2026</p>
@@ -110,7 +110,7 @@
           </div>
         </li>
 
-        <li class="work-row">
+        <li class="work-row" data-profile="task: 25-class image classification|input: binaries as grayscale images|models: ResNet18, GoogLeNet, LSTM, MLP|augmentation: variational autoencoder|best: ResNet18, 98.12% test accuracy">
           <div class="w-name">
             <h3><a class="stretch" href="https://github.com/ShlokisAFK/malware-binary-classifier">Malware binary classifier</a></h3>
             <p class="meta">2026</p>
@@ -128,7 +128,7 @@
           </div>
         </li>
 
-        <li class="work-row">
+        <li class="work-row" data-profile="built with: Python, NumPy only|by hand: forward pass, backprop|data: 60k samples|result: 90.78% validation accuracy">
           <div class="w-name">
             <h3><a class="stretch" href="https://github.com/ShlokisAFK/MNIST-Digit-Classifier">MNIST from scratch</a></h3>
             <p class="meta">2025</p>
@@ -146,7 +146,7 @@
           </div>
         </li>
 
-        <li class="work-row">
+        <li class="work-row" data-profile="model: LLaMA via Groq|search: Tavily, real time|memory: persistent JSON|design: tool registry|interface: command line">
           <div class="w-name">
             <h3><a class="stretch" href="https://github.com/ShlokisAFK/ai_agent">Autonomous AI agent</a></h3>
             <p class="meta">2026</p>
@@ -160,7 +160,7 @@
           </div>
         </li>
 
-        <li class="work-row">
+        <li class="work-row" data-profile="agent: seeker with BFS pathfinding|learns: player heatmap across sessions|policy: 70/30 explore and exploit|perception: line-of-sight detection|stack: Python, pygame, NumPy">
           <div class="w-name">
             <h3><a class="stretch" href="https://github.com/ShlokisAFK/HeatSeek">HeatSeek</a></h3>
             <p class="meta">2025</p>
@@ -238,8 +238,8 @@
         <span class="cmd-text" aria-hidden="true">mail singhshlok720@gmail.com</span><span class="cur" aria-hidden="true"></span>
       </a>
       <footer class="foot">
-        <p>Shlok Singh, Dehradun, India</p>
-        <p><a href="https://github.com/ShlokisAFK">GitHub ↗</a> <a href="https://www.linkedin.com/in/shlokisafk/">LinkedIn ↗</a> <a href="assets/Shlok-Singh-Resume.pdf" download>Resume ↓</a> <a href="mailto:singhshlok720@gmail.com">Email ↗</a></p>
+        <p>Shlok Singh, Dehradun, India. Press <kbd>`</kbd> for a terminal.</p>
+        <p><a href="https://github.com/ShlokisAFK">GitHub ↗</a> <a href="https://www.linkedin.com/in/shlokisafk/">LinkedIn ↗</a> <a href="assets/Shlok-Singh-Resume.pdf" download>Resume ↓</a> <button type="button" class="linklike" data-open-terminal>Terminal ›</button> <a href="mailto:singhshlok720@gmail.com">Email ↗</a></p>
       </footer>
     </div>
   </section>
@@ -252,5 +252,9 @@
 <script src="js/main.js"></script>
 <script src="js/dust.js"></script>
 <script src="js/artifacts.js"></script>
+<script src="js/profiler.js"></script>
+<script src="js/terminal.js"></script>
+<script src="js/sweep.js"></script>
+<script src="js/hexstrip.js"></script>
 </body>
 </html>

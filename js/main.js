@@ -238,7 +238,8 @@
     btn.addEventListener('click', () => {
       const pausing = !conv.paused();
       conv.paused(pausing);
-      window.__motionPaused = pausing;           // the stray marks respect the same button
+      window.__motionPaused = pausing;           // the stray marks and the hex strips respect the same button
+      html.classList.toggle('motion-paused', pausing);
       btn.setAttribute('aria-pressed', String(pausing));
       btn.textContent = pausing ? 'Play animation' : 'Pause animation';
     });
