@@ -1,7 +1,8 @@
 /* PitWall, race by race.
-   Reads data/pitwall-races.json (the live model scored on every race, published from the Raspberry Pi)
-   and builds the replay. The headline numbers elsewhere on the page are synced from the same file,
-   so they can never disagree with it. Only races the model had not seen when it was last trained are counted. */
+   Reads data/pitwall-races.json (a walk-forward evaluation published from the Raspberry Pi) and builds the replay.
+   Every race was predicted by a model trained only on the races before it, and is compared with a plain
+   "starting grid = finishing order" baseline. The numbers elsewhere on the page are synced from the same file,
+   so they can never disagree with it. */
 (() => {
   const URL = 'data/pitwall-races.json';
   const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -13,33 +14,39 @@
 
   function valid(d) {
     const s = d && d.summary;
-    return !!(d && Array.isArray(d.races) && d.races.length && d.model && s && s.unseen && s.grid_baseline_unseen && s.unseen.races > 0 &&
-      d.races.every(r => Array.isArray(r.pred_podium) && Array.isArray(r.actual_podium) && typeof r.podium_hits === 'number' && typeof r.mae === 'number' && typeof r.unseen === 'boolean'));
+    return !!(d && Array.isArray(d.races) && d.races.length && s && s.model && s.grid_baseline && s.model.races > 0 &&
+      d.races.every(r => Array.isArray(r.pred_podium) && Array.isArray(r.actual_podium) && typeof r.podium_hits === 'number' && typeof r.mae === 'number'));
   }
 
   /* ---- numbers used all over the page, always taken from the file ---- */
   function derive(d) {
-    const u = d.summary.unseen, b = d.summary.grid_baseline_unseen, counted = d.races.filter(r => r.unseen);
-    return { season: d.season, n: u.races, first: counted[0].round, last: counted[counted.length - 1].round, trained: dateLong(d.model.trained_at),
-      podiumPct: u.podium_accuracy_pct, podiumHit: u.podium_slots_hit, podiumTotal: u.podium_slots_total,
-      winners: u.winners_correct, winnerPct: u.winner_accuracy_pct, err: u.mean_position_error,
+    const m = d.summary.model, b = d.summary.grid_baseline;
+    return { season: d.season, n: m.races, first: d.races[0].round, last: d.races[d.races.length - 1].round,
+      podiumPct: m.podium_accuracy_pct, podiumHit: m.podium_slots_hit, podiumTotal: m.podium_slots_total,
+      winners: m.winners_correct, winnerPct: m.winner_accuracy_pct, err: m.mean_position_error,
       base: { podiumPct: b.podium_accuracy_pct, winners: b.winners_correct, err: b.mean_position_error } };
   }
 
+  function metricBlock(key, label, pct) {
+    const m = el('div', 'metric'); m.dataset.pw = key;
+    const top = el('div', 'm-top'), val = el('span', 'm-val'), b = el('b', null, f1(pct));
+    b.dataset.count = pct; b.dataset.dec = 1; val.append(b, document.createTextNode('%'));
+    top.append(el('span', null, label), val);
+    const bar = el('div', 'bar'); bar.setAttribute('role', 'img'); bar.setAttribute('aria-label', `${label} ${f1(pct)} percent`);
+    const i = el('i'); i.style.setProperty('--v', pct + '%'); bar.append(i);
+    m.append(top, bar); return m;
+  }
+
+  // The project list: numbers appear only when the evaluation file is there.
   function syncHeadline(pw) {
-    const set = (key, pct, label) => {
-      const m = $(`[data-pw="${key}"]`); if (!m) return;
-      const b = $('[data-count]', m); if (b) { b.textContent = f1(pct); b.dataset.count = pct; }
-      const i = $('.bar i', m); if (i) i.style.setProperty('--v', pct + '%');
-      const bar = $('.bar', m); if (bar) bar.setAttribute('aria-label', `${label} ${f1(pct)} percent`);
-    };
-    set('podium', pw.podiumPct, 'Podium accuracy');
-    set('winner', pw.winnerPct, 'Winner accuracy');
-    const note = $('[data-pw="note"]');
-    if (note) note.textContent = `Rounds ${pw.first} to ${pw.last} of ${pw.season}: every race after the model was last trained (${pw.trained}). Mean position error: ${f2(pw.err)}. See the race-by-race replay below.`;
-    const row = note && note.closest('.work-row');
-    if (row && row.dataset.profile) {
-      row.dataset.profile = row.dataset.profile.replace(/evaluated:[^|]*/, `evaluated: ${pw.n} races after its last training`).replace(/podium:[^|]*$/, `podium: ${f1(pw.podiumPct)}%  winner: ${f1(pw.winnerPct)}%`);
+    const box = $('#pw-metrics'); if (!box) return;
+    box.textContent = '';
+    box.append(metricBlock('podium', 'Podium accuracy', pw.podiumPct), metricBlock('winner', 'Winner accuracy', pw.winnerPct),
+      el('p', 'note', `All ${pw.n} races of ${pw.season}, each predicted by a model trained only on earlier races. Mean position error: ${f2(pw.err)}. Grid order alone: ${f1(pw.base.podiumPct)}% podium, ${pw.base.winners} of ${pw.n} winners. See the replay below.`));
+    const row = box.closest('.work-row');
+    if (row) {
+      if (!row.dataset.profileBase) row.dataset.profileBase = row.dataset.profile || '';
+      row.dataset.profile = row.dataset.profileBase + `|evaluated: walk-forward, ${pw.n} races|podium: ${f1(pw.podiumPct)}%  (grid order ${f1(pw.base.podiumPct)}%)`;
     }
   }
 
@@ -67,7 +74,7 @@
       stat('Winner accuracy', `${pw.winners} of ${pw.n}`, f1(pw.winnerPct) + '% of races', pw.winnerPct, (pw.base.winners / pw.n) * 100, `Tick: grid order alone, ${pw.base.winners} of ${pw.n}`),
       stat('Mean position error', f2(pw.err), 'places off, per driver', null, null, `Grid order alone: ${f2(pw.base.err)}`)
     );
-    const scope = el('p', 'note rp-scope', `Counted: rounds ${pw.first} to ${pw.last}, the races after the model was last trained on ${pw.trained}. Earlier rounds are shown with a dashed outline and left out of the totals.`);
+    const scope = el('p', 'note rp-scope', `Each race is predicted by a model trained only on the races before it, then compared with the grid-order baseline, which is the number to beat.`);
 
     const ctl = el('div', 'rp-controls');
     const prev = el('button', 'rp-btn', '‹ Prev'), next = el('button', 'rp-btn', 'Next ›'), play = el('button', 'rp-btn rp-play', 'Play');
@@ -81,8 +88,8 @@
 
     const strip = el('div', 'rp-strip'); strip.setAttribute('role', 'group'); strip.setAttribute('aria-label', 'Races of the season');
     const cells = races.map((r, i) => {
-      const c = el('button', 'rp-cell' + (r.unseen ? '' : ' pre')); c.type = 'button';
-      c.setAttribute('aria-label', `Round ${r.round}, ${r.race}: ${r.podium_hits} of 3 podium places right${r.unseen ? '' : '. Before the model was last trained, not counted'}`);
+      const c = el('button', 'rp-cell'); c.type = 'button';
+      c.setAttribute('aria-label', `Round ${r.round}, ${r.race}: ${r.podium_hits} of 3 podium places right`);
       c.append(el('span', 'rp-n', String(r.round)));
       const dots = el('span', 'rp-dots'); dots.setAttribute('aria-hidden', 'true');
       for (let k = 0; k < 3; k++) dots.append(el('span', k < r.podium_hits ? 'on' : ''));
@@ -93,7 +100,6 @@
 
     const stage = el('div', 'rp-stage');
     const head = el('h3', 'rp-race');
-    const pre = el('p', 'note rp-pre');
     const cols = el('div', 'rp-cols');
     const colP = el('div', 'rp-col'), colA = el('div', 'rp-col');
     const chipsP = el('div', 'rp-chips'), chipsA = el('div', 'rp-chips');
@@ -101,7 +107,7 @@
     colA.append(el('div', 'rp-colhead', 'What happened'), chipsA);
     cols.append(colP, colA);
     const facts = el('div', 'rp-facts'), tally = el('p', 'rp-tally');
-    stage.append(head, pre, cols, facts, tally);
+    stage.append(head, cols, facts, tally);
 
     const live = el('p', 'sr-only'); live.setAttribute('aria-live', 'polite');
     const foot = el('p', 'note rp-foot', `Updated ${dateLong(d.generated_at) || 'recently'}. Dots show how many of the three podium places the model named.`);
@@ -125,8 +131,6 @@
       out.textContent = `Round ${r.round} of ${races[N - 1].round}`;
       cells.forEach((c, k) => { c.classList.toggle('sel', k === i); if (k === i) c.setAttribute('aria-current', 'true'); else c.removeAttribute('aria-current'); });
       head.textContent = `Round ${r.round}, ${r.race}`;
-      pre.textContent = r.unseen ? '' : `This race took place before the model was last trained (${pw.trained}), so it may have been in its training data and isn't counted.`;
-      pre.hidden = r.unseen;
       chipsP.textContent = ''; chipsA.textContent = '';
       r.pred_podium.forEach(code => chipsP.append(chip(code, aSet.has(code), true)));
       r.actual_podium.forEach(code => chipsA.append(chip(code, pSet.has(code), false)));
@@ -134,13 +138,11 @@
       facts.append(el('p', null, `Winner: predicted ${r.pred_winner}, actual ${r.actual_winner} ${r.winner_correct ? '✓' : '✗'}`),
         el('p', null, `Position error this race: ${f2(r.mae)}`));
       if (r.grid) facts.append(el('p', 'dim', `Grid order alone: ${r.grid.podium_hits} of 3 podium places, winner ${r.grid.winner_correct ? '✓' : '✗'}`));
-      const upto = races.slice(0, i + 1).filter(x => x.unseen);
-      if (!upto.length) tally.textContent = 'Counted races start at round ' + pw.first + '.';
-      else {
-        const hits = upto.reduce((s, x) => s + x.podium_hits, 0), wins = upto.filter(x => x.winner_correct).length, err = upto.reduce((s, x) => s + x.mae, 0) / upto.length;
-        tally.textContent = `Counted through round ${r.round}: podium ${hits} of ${upto.length * 3} (${f1(hits / (upto.length * 3) * 100)}%), winners ${wins} of ${upto.length}, mean error ${f2(err)}`;
-      }
-      live.textContent = `Round ${r.round}, ${r.race}. Predicted ${r.pred_podium.join(', ')}. Actual ${r.actual_podium.join(', ')}. ${r.podium_hits} of 3 podium places right.${r.unseen ? '' : ' Not counted.'}`;
+      const upto = races.slice(0, i + 1);
+      const hits = upto.reduce((s, x) => s + x.podium_hits, 0), wins = upto.filter(x => x.winner_correct).length, err = upto.reduce((s, x) => s + x.mae, 0) / upto.length;
+      const gh = upto.reduce((s, x) => s + (x.grid ? x.grid.podium_hits : 0), 0);
+      tally.textContent = `Through round ${r.round}: podium ${hits} of ${upto.length * 3} (${f1(hits / (upto.length * 3) * 100)}%), winners ${wins} of ${upto.length}, mean error ${f2(err)}. Grid order alone: podium ${f1(gh / (upto.length * 3) * 100)}%.`;
+      live.textContent = `Round ${r.round}, ${r.race}. Predicted ${r.pred_podium.join(', ')}. Actual ${r.actual_podium.join(', ')}. ${r.podium_hits} of 3 podium places right.`;
       if (animate && !reduced && window.gsap && window.ScrambleTextPlugin) {
         $$('.chip b', stage).forEach(b => { const t = b.textContent; gsap.fromTo(b, { scrambleText: { text: '', chars: '01#%/<>' } }, { duration: 0.4, scrambleText: { text: t, chars: '01#%/<>', speed: 1 }, ease: 'none', overwrite: true }); });
       }
@@ -170,5 +172,5 @@
   window.__pitwallReady = fetch(URL, { cache: 'no-cache' })
     .then(r => { if (!r.ok) throw new Error('no data'); return r.json(); })
     .then(d => { if (!valid(d)) throw new Error('bad data'); const pw = derive(d); window.__pw = pw; syncHeadline(pw); build(d, pw); })
-    .catch(() => { /* keep the static fallback and the note that the data is unavailable */ });
+    .catch(() => { /* keep the fallback notes */ });
 })();

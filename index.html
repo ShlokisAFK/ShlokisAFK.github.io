@@ -97,8 +97,8 @@
             <p class="stack">XGBoost, FastAPI, FastF1, Raspberry Pi</p>
             <p><a class="live" href="https://pitwal.site">pitwal.site, live ↗</a></p>
           </div>
-          <div class="w-metrics">
-            <p class="note solo">Accuracy figures are paused while I re-run the evaluation after fixing a bug in the feature pipeline. The live dashboard is at pitwal.site.</p>
+          <div class="w-metrics" id="pw-metrics">
+            <p class="note solo">Evaluated race by race, against a starting-grid baseline. See the replay below.</p>
           </div>
         </li>
 
@@ -175,10 +175,19 @@
     <div class="wrap">
       <div class="sec-head">
         <h2 id="replay-title">PitWall, race by race</h2>
+        <a class="quiet" href="#replay-method">How this is measured ↓</a>
       </div>
-      <p class="lead">Coming back with corrected numbers.</p>
-      <p class="note replay-fallback" id="replay-fallback">While checking PitWall's evaluation I found an ordering bug in its feature pipeline that let information from later races leak into earlier ones. I've paused every accuracy figure and the race-by-race replay until the corrected evaluation is ready. The live dashboard is at <a href="https://pitwal.site">pitwal.site</a>.</p>
+      <p class="lead">Scrub through the 2026 season and compare what the model predicted with what happened. Each race was predicted by a model that had only seen the races before it.</p>
+
       <div id="replay-app" class="replay" hidden></div>
+      <p class="note replay-fallback" id="replay-fallback">The race data isn't available right now. The live dashboard is at <a href="https://pitwal.site">pitwal.site</a>.</p>
+
+      <details class="method" id="replay-method">
+        <summary>How this is measured</summary>
+        <p>PitWall predicts every driver's finishing position, then ranks them. <strong>Podium accuracy</strong> counts how many of the real top three the model named, out of three per race (order doesn't matter). <strong>Winner accuracy</strong> counts races where its top pick won. <strong>Position error</strong> is the average gap between predicted and actual finishing position.</p>
+        <p>To keep the test honest, each race is scored by a model trained only on the races before it, the way PitWall would have run that weekend. As a yardstick, the replay also shows what you'd get by assuming the starting grid is the finishing order. That baseline is hard to beat, which is why it's shown next to every number.</p>
+        <p>While building this I found and fixed a bug in my own feature pipeline that let later races leak into earlier ones. The figures here are from the corrected pipeline.</p>
+      </details>
     </div>
   </section>
 
@@ -205,8 +214,8 @@
 
       <figure class="shot">
         <a href="https://pitwal.site" aria-label="Open the live PitWall dashboard, pitwal.site">
-          <img src="assets/pitwall.jpg" width="1440" height="500" loading="lazy"
-               alt="The PitWall dashboard in its light theme: the next Grand Prix, a countdown timer, and the weekend schedule.">
+          <img src="assets/pitwall.jpg" width="1440" height="880" loading="lazy"
+               alt="The PitWall dashboard in its light theme: the next Grand Prix with a countdown and weekend schedule, then the model's walk-forward accuracy shown next to a starting-grid baseline.">
         </a>
         <figcaption class="note">What the Pi serves: the live dashboard at pitwal.site, captured 22 November 2026.</figcaption>
       </figure>

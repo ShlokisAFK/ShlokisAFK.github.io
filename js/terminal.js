@@ -5,7 +5,7 @@
   const PROJECTS = [
     { id: 'pitwall', name: 'PitWall', url: GH + '/PitWall', line: () => {
       const p = window.__pw;                                  // published by the Pi; the same numbers as the replay
-      return 'XGBoost F1 predictor, live on a Raspberry Pi 5.' + (p ? ` ${p.podiumPct}% podium, ${p.winners} of ${p.n} winners, ${p.err} mean position error over rounds ${p.first} to ${p.last} of ${p.season}, the races after the model was last trained.` : '');
+      return 'XGBoost F1 predictor, live on a Raspberry Pi 5.' + (p ? ` ${p.podiumPct}% podium, ${p.winners} of ${p.n} winners, ${p.err} mean position error over ${p.n} races of ${p.season}, each predicted by a model trained only on earlier races. Grid order alone: ${p.base.podiumPct}% podium.` : '');
     } },
     { id: 'malware', name: 'Malware binary classifier', line: '25 families from grayscale images. ResNet18 reaches 98.12% test accuracy, 2.5 points above the MLP baseline.', url: GH + '/malware-binary-classifier' },
     { id: 'mnist', name: 'MNIST from scratch', line: 'NumPy only, no ML libraries. 90.78% validation accuracy on 60k samples.', url: GH + '/MNIST-Digit-Classifier' },
