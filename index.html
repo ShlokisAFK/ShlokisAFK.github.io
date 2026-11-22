@@ -87,7 +87,7 @@
       </div>
 
       <ul class="work">
-        <li class="work-row" data-profile="model: XGBoost, early stopping|trained on: 1,836 rows, 2022-2025|features: form, circuit, quali gap|served: Raspberry Pi 5, FastAPI|podium: 93.3%  winner: 60%">
+        <li class="work-row" data-profile="model: XGBoost, early stopping|evaluated: walk-forward on 2026|features: form, circuit, quali gap|served: Raspberry Pi 5, FastAPI|podium: 88.9%  winner: 66.7%">
           <div class="w-name">
             <h3><a class="stretch" href="https://github.com/ShlokisAFK/PitWall">PitWall</a></h3>
             <p class="meta">2026</p>
@@ -98,15 +98,15 @@
             <p><a class="live" href="https://pitwal.site">pitwal.site, live ↗</a></p>
           </div>
           <div class="w-metrics">
-            <div class="metric">
-              <div class="m-top"><span>Podium accuracy</span><span class="m-val"><b data-count="93.3" data-dec="1">93.3</b>%</span></div>
-              <div class="bar" role="img" aria-label="Podium accuracy 93.3 percent"><i style="--v:93.3%"></i></div>
+            <div class="metric" data-pw="podium">
+              <div class="m-top"><span>Podium accuracy</span><span class="m-val"><b data-count="88.9" data-dec="1">88.9</b>%</span></div>
+              <div class="bar" role="img" aria-label="Podium accuracy 88.9 percent"><i style="--v:88.9%"></i></div>
             </div>
-            <div class="metric">
-              <div class="m-top"><span>Winner accuracy</span><span class="m-val"><b data-count="60" data-dec="0">60</b>%</span></div>
-              <div class="bar" role="img" aria-label="Winner accuracy 60 percent"><i style="--v:60%"></i></div>
+            <div class="metric" data-pw="winner">
+              <div class="m-top"><span>Winner accuracy</span><span class="m-val"><b data-count="66.7" data-dec="1">66.7</b>%</span></div>
+              <div class="bar" role="img" aria-label="Winner accuracy 66.7 percent"><i style="--v:66.7%"></i></div>
             </div>
-            <p class="note">First 15 races of 2026. Average position error: 1.06.</p>
+            <p class="note" data-pw="note">First 15 races of 2026, each predicted by a model trained only on earlier races. Mean position error: 1.31. See the race-by-race replay below.</p>
           </div>
         </li>
 
@@ -176,6 +176,25 @@
       </ul>
 
       <p class="also">Smaller tools: <a href="https://github.com/ShlokisAFK/DailyPulse">DailyPulse</a> and <a href="https://github.com/ShlokisAFK/Minitalker-AI">Minitalker-AI</a>.</p>
+    </div>
+  </section>
+
+  <section class="section" id="replay" aria-labelledby="replay-title">
+    <div class="wrap">
+      <div class="sec-head">
+        <h2 id="replay-title">PitWall, race by race</h2>
+        <a class="quiet" href="#replay-method">How this is measured ↓</a>
+      </div>
+      <p class="lead">Scrub through the 2026 season and compare what the model predicted with what happened. Each race was predicted by a model that had only seen the races before it.</p>
+
+      <div id="replay-app" class="replay" hidden></div>
+      <p class="note replay-fallback" id="replay-fallback">The race data isn't available right now. The live dashboard is at <a href="https://pitwal.site">pitwal.site</a>.</p>
+
+      <details class="method" id="replay-method">
+        <summary>How this is measured</summary>
+        <p>PitWall predicts every driver's finishing position, then ranks them. <strong>Podium accuracy</strong> counts how many of the real top three the model named, out of three per race (order doesn't matter). <strong>Winner accuracy</strong> counts races where its top pick won. <strong>Position error</strong> is the average gap between predicted and actual finishing position.</p>
+        <p>To keep the test honest, each race is scored by a model trained only on earlier races, the way PitWall would have run that weekend. As a yardstick, the replay also shows what you'd get by simply assuming the starting grid order is the finishing order.</p>
+      </details>
     </div>
   </section>
 
@@ -249,6 +268,7 @@
 <script src="vendor/gsap.min.js"></script>
 <script src="vendor/ScrollTrigger.min.js"></script>
 <script src="vendor/ScrambleTextPlugin.min.js"></script>
+<script src="js/replay.js"></script>
 <script src="js/main.js"></script>
 <script src="js/dust.js"></script>
 <script src="js/artifacts.js"></script>

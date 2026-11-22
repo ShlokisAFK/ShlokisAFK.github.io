@@ -1,0 +1,337 @@
+{
+ "generated_at": "2026-11-22T06:37:25Z",
+ "method": "walk-forward: each race scored by a model trained only on earlier races",
+ "season": 2026,
+ "summary": {
+  "walk_forward": {
+   "races": 15,
+   "podium_slots_hit": 40,
+   "podium_slots_total": 45,
+   "podium_accuracy_pct": 88.9,
+   "winners_correct": 10,
+   "winner_accuracy_pct": 66.7,
+   "mean_position_error": 1.31
+  },
+  "static_holdout": {
+   "races": 15,
+   "podium_slots_hit": 39,
+   "podium_slots_total": 45,
+   "podium_accuracy_pct": 86.7,
+   "winners_correct": 9,
+   "winner_accuracy_pct": 60.0,
+   "mean_position_error": 1.38
+  },
+  "grid_baseline": {
+   "races": 15,
+   "podium_slots_hit": 36,
+   "podium_slots_total": 45,
+   "podium_accuracy_pct": 80.0,
+   "winners_correct": 13,
+   "winner_accuracy_pct": 86.7,
+   "mean_position_error": 2.05
+  }
+ },
+ "races": [
+  {
+   "year": 2026,
+   "round": 1,
+   "race": "Australian Grand Prix",
+   "pred_podium": [
+    "HAM",
+    "RUS",
+    "VER"
+   ],
+   "actual_podium": [
+    "ANT",
+    "LEC",
+    "RUS"
+   ],
+   "podium_hits": 1,
+   "pred_winner": "VER",
+   "actual_winner": "RUS",
+   "winner_correct": false,
+   "mae": 6.455
+  },
+  {
+   "year": 2026,
+   "round": 2,
+   "race": "Chinese Grand Prix",
+   "pred_podium": [
+    "HAM",
+    "LEC",
+    "RUS"
+   ],
+   "actual_podium": [
+    "ANT",
+    "HAM",
+    "RUS"
+   ],
+   "podium_hits": 2,
+   "pred_winner": "RUS",
+   "actual_winner": "ANT",
+   "winner_correct": false,
+   "mae": 1.636
+  },
+  {
+   "year": 2026,
+   "round": 3,
+   "race": "Japanese Grand Prix",
+   "pred_podium": [
+    "ANT",
+    "LEC",
+    "PIA"
+   ],
+   "actual_podium": [
+    "ANT",
+    "LEC",
+    "PIA"
+   ],
+   "podium_hits": 3,
+   "pred_winner": "ANT",
+   "actual_winner": "ANT",
+   "winner_correct": true,
+   "mae": 0.909
+  },
+  {
+   "year": 2026,
+   "round": 4,
+   "race": "Miami Grand Prix",
+   "pred_podium": [
+    "ANT",
+    "NOR",
+    "PIA"
+   ],
+   "actual_podium": [
+    "ANT",
+    "NOR",
+    "PIA"
+   ],
+   "podium_hits": 3,
+   "pred_winner": "ANT",
+   "actual_winner": "ANT",
+   "winner_correct": true,
+   "mae": 0.273
+  },
+  {
+   "year": 2026,
+   "round": 5,
+   "race": "Canadian Grand Prix",
+   "pred_podium": [
+    "ANT",
+    "HAM",
+    "VER"
+   ],
+   "actual_podium": [
+    "ANT",
+    "HAM",
+    "VER"
+   ],
+   "podium_hits": 3,
+   "pred_winner": "ANT",
+   "actual_winner": "ANT",
+   "winner_correct": true,
+   "mae": 1.091
+  },
+  {
+   "year": 2026,
+   "round": 6,
+   "race": "Monaco Grand Prix",
+   "pred_podium": [
+    "GAS",
+    "HAD",
+    "HAM"
+   ],
+   "actual_podium": [
+    "ANT",
+    "GAS",
+    "HAM"
+   ],
+   "podium_hits": 2,
+   "pred_winner": "HAM",
+   "actual_winner": "ANT",
+   "winner_correct": false,
+   "mae": 2.455
+  },
+  {
+   "year": 2026,
+   "round": 7,
+   "race": "Barcelona Grand Prix",
+   "pred_podium": [
+    "HAM",
+    "NOR",
+    "RUS"
+   ],
+   "actual_podium": [
+    "HAM",
+    "NOR",
+    "RUS"
+   ],
+   "podium_hits": 3,
+   "pred_winner": "HAM",
+   "actual_winner": "HAM",
+   "winner_correct": true,
+   "mae": 0.909
+  },
+  {
+   "year": 2026,
+   "round": 8,
+   "race": "Austrian Grand Prix",
+   "pred_podium": [
+    "ANT",
+    "RUS",
+    "VER"
+   ],
+   "actual_podium": [
+    "ANT",
+    "RUS",
+    "VER"
+   ],
+   "podium_hits": 3,
+   "pred_winner": "RUS",
+   "actual_winner": "RUS",
+   "winner_correct": true,
+   "mae": 1.091
+  },
+  {
+   "year": 2026,
+   "round": 9,
+   "race": "British Grand Prix",
+   "pred_podium": [
+    "HAM",
+    "LEC",
+    "RUS"
+   ],
+   "actual_podium": [
+    "HAM",
+    "LEC",
+    "RUS"
+   ],
+   "podium_hits": 3,
+   "pred_winner": "LEC",
+   "actual_winner": "LEC",
+   "winner_correct": true,
+   "mae": 1.091
+  },
+  {
+   "year": 2026,
+   "round": 10,
+   "race": "Belgian Grand Prix",
+   "pred_podium": [
+    "ANT",
+    "LEC",
+    "VER"
+   ],
+   "actual_podium": [
+    "ANT",
+    "LEC",
+    "VER"
+   ],
+   "podium_hits": 3,
+   "pred_winner": "LEC",
+   "actual_winner": "ANT",
+   "winner_correct": false,
+   "mae": 0.636
+  },
+  {
+   "year": 2026,
+   "round": 11,
+   "race": "Hungarian Grand Prix",
+   "pred_podium": [
+    "ANT",
+    "NOR",
+    "VER"
+   ],
+   "actual_podium": [
+    "ANT",
+    "NOR",
+    "VER"
+   ],
+   "podium_hits": 3,
+   "pred_winner": "NOR",
+   "actual_winner": "NOR",
+   "winner_correct": true,
+   "mae": 0.909
+  },
+  {
+   "year": 2026,
+   "round": 12,
+   "race": "Dutch Grand Prix",
+   "pred_podium": [
+    "ANT",
+    "NOR",
+    "RUS"
+   ],
+   "actual_podium": [
+    "ANT",
+    "NOR",
+    "RUS"
+   ],
+   "podium_hits": 3,
+   "pred_winner": "NOR",
+   "actual_winner": "NOR",
+   "winner_correct": true,
+   "mae": 0.455
+  },
+  {
+   "year": 2026,
+   "round": 13,
+   "race": "Italian Grand Prix",
+   "pred_podium": [
+    "ANT",
+    "RUS",
+    "VER"
+   ],
+   "actual_podium": [
+    "ANT",
+    "RUS",
+    "VER"
+   ],
+   "podium_hits": 3,
+   "pred_winner": "ANT",
+   "actual_winner": "ANT",
+   "winner_correct": true,
+   "mae": 0.364
+  },
+  {
+   "year": 2026,
+   "round": 14,
+   "race": "Spanish Grand Prix",
+   "pred_podium": [
+    "ANT",
+    "NOR",
+    "VER"
+   ],
+   "actual_podium": [
+    "ANT",
+    "NOR",
+    "VER"
+   ],
+   "podium_hits": 3,
+   "pred_winner": "NOR",
+   "actual_winner": "ANT",
+   "winner_correct": false,
+   "mae": 0.4
+  },
+  {
+   "year": 2026,
+   "round": 15,
+   "race": "Azerbaijan Grand Prix",
+   "pred_podium": [
+    "ANT",
+    "RUS",
+    "VER"
+   ],
+   "actual_podium": [
+    "HAD",
+    "RUS",
+    "VER"
+   ],
+   "podium_hits": 2,
+   "pred_winner": "RUS",
+   "actual_winner": "RUS",
+   "winner_correct": true,
+   "mae": 0.909
+  }
+ ],
+ "source": "Interim: computed from the public repo copy of features.csv. Replaced by the Raspberry Pi's own run."
+}

@@ -89,7 +89,10 @@
     scrollMoments();
     ScrollTrigger.refresh();
   };
-  (document.fonts && document.fonts.ready ? document.fonts.ready : Promise.resolve()).then(start);
+  // wait (briefly) for the published PitWall numbers, so the digits that scramble into place are the real ones
+  const fontsReady = document.fonts && document.fonts.ready ? document.fonts.ready : Promise.resolve();
+  const dataReady = Promise.race([window.__pitwallReady || Promise.resolve(), new Promise(r => setTimeout(r, 1500))]);
+  Promise.all([fontsReady, dataReady]).then(start);
 
   /* ---------- Load sequence ---------- */
   function intro() {

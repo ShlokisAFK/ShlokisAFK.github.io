@@ -3,7 +3,10 @@
   const EMAIL = 'singhshlok720@gmail.com';
   const GH = 'https://github.com/ShlokisAFK';
   const PROJECTS = [
-    { id: 'pitwall', name: 'PitWall', line: 'XGBoost F1 predictor, live on a Raspberry Pi 5. 93.3% podium, 60% winner, 1.06 position error (first 15 races of 2026).', url: GH + '/PitWall' },
+    { id: 'pitwall', name: 'PitWall', url: GH + '/PitWall', line: () => {
+      const p = window.__pw;                                  // published by the Pi; the same numbers as the replay
+      return 'XGBoost F1 predictor, live on a Raspberry Pi 5.' + (p ? ` ${p.podiumPct}% podium, ${p.winners} of ${p.n} winners, ${p.err} mean position error over ${p.n} races of ${p.season}, each predicted by a model trained only on earlier races.` : '');
+    } },
     { id: 'malware', name: 'Malware binary classifier', line: '25 families from grayscale images. ResNet18 reaches 98.12% test accuracy, 2.5 points above the MLP baseline.', url: GH + '/malware-binary-classifier' },
     { id: 'mnist', name: 'MNIST from scratch', line: 'NumPy only, no ML libraries. 90.78% validation accuracy on 60k samples.', url: GH + '/MNIST-Digit-Classifier' },
     { id: 'agent', name: 'Autonomous AI agent', line: 'LLaMA via Groq, Tavily web search, persistent memory, a tool registry.', url: GH + '/ai_agent' },
@@ -56,7 +59,7 @@
       print('Shlok Singh. Third-year B.Tech in Computer Science Engineering (AI and ML) at UPES, Dehradun.');
       print('I build and deploy ML models. Looking for an ML internship.');
     },
-    projects() { PROJECTS.forEach((p, i) => { print(`${i + 1}. ${p.name}`); print('   ' + p.line, 'dim'); }); },
+    projects() { PROJECTS.forEach((p, i) => { print(`${i + 1}. ${p.name}`); print('   ' + (typeof p.line === 'function' ? p.line() : p.line), 'dim'); }); },
     open(arg) {
       const p = find(arg);
       if (!p) return print(arg ? `No project called "${arg}". Try: projects` : 'Usage: open <name>', 'err');
