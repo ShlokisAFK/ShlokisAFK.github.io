@@ -87,7 +87,7 @@
       </div>
 
       <ul class="work">
-        <li class="work-row" data-profile="model: XGBoost, early stopping|evaluated: walk-forward on 2026|features: form, circuit, quali gap|served: Raspberry Pi 5, FastAPI|podium: 88.9%  winner: 66.7%">
+        <li class="work-row" data-profile="model: XGBoost, early stopping|evaluated: 12 races after its last training|features: form, circuit, quali gap|served: Raspberry Pi 5, FastAPI|podium: 94.4%  winner: 58.3%">
           <div class="w-name">
             <h3><a class="stretch" href="https://github.com/ShlokisAFK/PitWall">PitWall</a></h3>
             <p class="meta">2026</p>
@@ -99,14 +99,14 @@
           </div>
           <div class="w-metrics">
             <div class="metric" data-pw="podium">
-              <div class="m-top"><span>Podium accuracy</span><span class="m-val"><b data-count="88.9" data-dec="1">88.9</b>%</span></div>
-              <div class="bar" role="img" aria-label="Podium accuracy 88.9 percent"><i style="--v:88.9%"></i></div>
+              <div class="m-top"><span>Podium accuracy</span><span class="m-val"><b data-count="94.4" data-dec="1">94.4</b>%</span></div>
+              <div class="bar" role="img" aria-label="Podium accuracy 94.4 percent"><i style="--v:94.4%"></i></div>
             </div>
             <div class="metric" data-pw="winner">
-              <div class="m-top"><span>Winner accuracy</span><span class="m-val"><b data-count="66.7" data-dec="1">66.7</b>%</span></div>
-              <div class="bar" role="img" aria-label="Winner accuracy 66.7 percent"><i style="--v:66.7%"></i></div>
+              <div class="m-top"><span>Winner accuracy</span><span class="m-val"><b data-count="58.3" data-dec="1">58.3</b>%</span></div>
+              <div class="bar" role="img" aria-label="Winner accuracy 58.3 percent"><i style="--v:58.3%"></i></div>
             </div>
-            <p class="note" data-pw="note">First 15 races of 2026, each predicted by a model trained only on earlier races. Mean position error: 1.31. See the race-by-race replay below.</p>
+            <p class="note" data-pw="note">Rounds 4 to 15 of 2026: every race after the model was last trained (10 April 2026). Mean position error: 0.87. See the race-by-race replay below.</p>
           </div>
         </li>
 
@@ -185,7 +185,7 @@
         <h2 id="replay-title">PitWall, race by race</h2>
         <a class="quiet" href="#replay-method">How this is measured ↓</a>
       </div>
-      <p class="lead">Scrub through the 2026 season and compare what the model predicted with what happened. Each race was predicted by a model that had only seen the races before it.</p>
+      <p class="lead">Scrub through the 2026 season and compare what the model predicted with what happened. Only races after the model's last training count, because those are the ones it could not have memorised.</p>
 
       <div id="replay-app" class="replay" hidden></div>
       <p class="note replay-fallback" id="replay-fallback">The race data isn't available right now. The live dashboard is at <a href="https://pitwal.site">pitwal.site</a>.</p>
@@ -193,7 +193,7 @@
       <details class="method" id="replay-method">
         <summary>How this is measured</summary>
         <p>PitWall predicts every driver's finishing position, then ranks them. <strong>Podium accuracy</strong> counts how many of the real top three the model named, out of three per race (order doesn't matter). <strong>Winner accuracy</strong> counts races where its top pick won. <strong>Position error</strong> is the average gap between predicted and actual finishing position.</p>
-        <p>To keep the test honest, each race is scored by a model trained only on earlier races, the way PitWall would have run that weekend. As a yardstick, the replay also shows what you'd get by simply assuming the starting grid order is the finishing order.</p>
+        <p>The model on this page is the one running on my Raspberry Pi, scored on every race of the season. It was last trained on a known date, so only races after that date are counted: it never saw them. Earlier races are shown with a dashed outline and left out of the totals. As a yardstick, the replay also shows what you'd get by simply assuming the starting grid order is the finishing order. That yardstick is hard to beat at picking the winner, so I show it.</p>
       </details>
     </div>
   </section>

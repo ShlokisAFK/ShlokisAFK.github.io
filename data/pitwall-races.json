@@ -1,27 +1,40 @@
 {
- "generated_at": "2026-11-22T06:37:25Z",
- "method": "walk-forward: each race scored by a model trained only on earlier races",
+ "generated_at": "2026-11-22T06:57:21Z",
  "season": 2026,
+ "method": "The live model scored every race of the season. Only races after its last training are counted.",
+ "model": {
+  "trained_at": "2026-04-10",
+  "first_unseen_round": 4
+ },
  "summary": {
-  "walk_forward": {
-   "races": 15,
-   "podium_slots_hit": 40,
-   "podium_slots_total": 45,
-   "podium_accuracy_pct": 88.9,
-   "winners_correct": 10,
-   "winner_accuracy_pct": 66.7,
-   "mean_position_error": 1.31
+  "unseen": {
+   "races": 12,
+   "podium_slots_hit": 34,
+   "podium_slots_total": 36,
+   "podium_accuracy_pct": 94.4,
+   "winners_correct": 7,
+   "winner_accuracy_pct": 58.3,
+   "mean_position_error": 0.87
   },
-  "static_holdout": {
+  "all": {
    "races": 15,
-   "podium_slots_hit": 39,
+   "podium_slots_hit": 42,
    "podium_slots_total": 45,
-   "podium_accuracy_pct": 86.7,
+   "podium_accuracy_pct": 93.3,
    "winners_correct": 9,
    "winner_accuracy_pct": 60.0,
-   "mean_position_error": 1.38
+   "mean_position_error": 1.04
   },
-  "grid_baseline": {
+  "grid_baseline_unseen": {
+   "races": 12,
+   "podium_slots_hit": 29,
+   "podium_slots_total": 36,
+   "podium_accuracy_pct": 80.6,
+   "winners_correct": 10,
+   "winner_accuracy_pct": 83.3,
+   "mean_position_error": 1.67
+  },
+  "grid_baseline_all": {
    "races": 15,
    "podium_slots_hit": 36,
    "podium_slots_total": 45,
@@ -37,7 +50,7 @@
    "round": 1,
    "race": "Australian Grand Prix",
    "pred_podium": [
-    "HAM",
+    "ANT",
     "RUS",
     "VER"
    ],
@@ -46,19 +59,25 @@
     "LEC",
     "RUS"
    ],
-   "podium_hits": 1,
-   "pred_winner": "VER",
+   "podium_hits": 2,
+   "pred_winner": "RUS",
    "actual_winner": "RUS",
-   "winner_correct": false,
-   "mae": 6.455
+   "winner_correct": true,
+   "mae": 3.545,
+   "unseen": false,
+   "grid": {
+    "podium_hits": 2,
+    "winner_correct": true,
+    "mae": 4.545
+   }
   },
   {
    "year": 2026,
    "round": 2,
    "race": "Chinese Grand Prix",
    "pred_podium": [
+    "ANT",
     "HAM",
-    "LEC",
     "RUS"
    ],
    "actual_podium": [
@@ -66,11 +85,17 @@
     "HAM",
     "RUS"
    ],
-   "podium_hits": 2,
+   "podium_hits": 3,
    "pred_winner": "RUS",
    "actual_winner": "ANT",
    "winner_correct": false,
-   "mae": 1.636
+   "mae": 1.182,
+   "unseen": false,
+   "grid": {
+    "podium_hits": 3,
+    "winner_correct": true,
+    "mae": 4.182
+   }
   },
   {
    "year": 2026,
@@ -90,7 +115,13 @@
    "pred_winner": "ANT",
    "actual_winner": "ANT",
    "winner_correct": true,
-   "mae": 0.909
+   "mae": 0.545,
+   "unseen": false,
+   "grid": {
+    "podium_hits": 2,
+    "winner_correct": true,
+    "mae": 2.0
+   }
   },
   {
    "year": 2026,
@@ -110,7 +141,13 @@
    "pred_winner": "ANT",
    "actual_winner": "ANT",
    "winner_correct": true,
-   "mae": 0.273
+   "mae": 0.273,
+   "unseen": true,
+   "grid": {
+    "podium_hits": 1,
+    "winner_correct": true,
+    "mae": 3.455
+   }
   },
   {
    "year": 2026,
@@ -119,26 +156,32 @@
    "pred_podium": [
     "ANT",
     "HAM",
-    "VER"
+    "LEC"
    ],
    "actual_podium": [
     "ANT",
     "HAM",
     "VER"
    ],
-   "podium_hits": 3,
-   "pred_winner": "ANT",
+   "podium_hits": 2,
+   "pred_winner": "HAM",
    "actual_winner": "ANT",
-   "winner_correct": true,
-   "mae": 1.091
+   "winner_correct": false,
+   "mae": 1.091,
+   "unseen": true,
+   "grid": {
+    "podium_hits": 3,
+    "winner_correct": true,
+    "mae": 0.0
+   }
   },
   {
    "year": 2026,
    "round": 6,
    "race": "Monaco Grand Prix",
    "pred_podium": [
+    "ANT",
     "GAS",
-    "HAD",
     "HAM"
    ],
    "actual_podium": [
@@ -146,11 +189,17 @@
     "GAS",
     "HAM"
    ],
-   "podium_hits": 2,
-   "pred_winner": "HAM",
+   "podium_hits": 3,
+   "pred_winner": "GAS",
    "actual_winner": "ANT",
    "winner_correct": false,
-   "mae": 2.455
+   "mae": 1.818,
+   "unseen": true,
+   "grid": {
+    "podium_hits": 2,
+    "winner_correct": true,
+    "mae": 5.091
+   }
   },
   {
    "year": 2026,
@@ -170,7 +219,13 @@
    "pred_winner": "HAM",
    "actual_winner": "HAM",
    "winner_correct": true,
-   "mae": 0.909
+   "mae": 0.727,
+   "unseen": true,
+   "grid": {
+    "podium_hits": 3,
+    "winner_correct": true,
+    "mae": 0.0
+   }
   },
   {
    "year": 2026,
@@ -190,7 +245,13 @@
    "pred_winner": "RUS",
    "actual_winner": "RUS",
    "winner_correct": true,
-   "mae": 1.091
+   "mae": 0.727,
+   "unseen": true,
+   "grid": {
+    "podium_hits": 3,
+    "winner_correct": true,
+    "mae": 0.0
+   }
   },
   {
    "year": 2026,
@@ -210,7 +271,13 @@
    "pred_winner": "LEC",
    "actual_winner": "LEC",
    "winner_correct": true,
-   "mae": 1.091
+   "mae": 0.818,
+   "unseen": true,
+   "grid": {
+    "podium_hits": 3,
+    "winner_correct": true,
+    "mae": 0.0
+   }
   },
   {
    "year": 2026,
@@ -230,7 +297,13 @@
    "pred_winner": "LEC",
    "actual_winner": "ANT",
    "winner_correct": false,
-   "mae": 0.636
+   "mae": 0.909,
+   "unseen": true,
+   "grid": {
+    "podium_hits": 3,
+    "winner_correct": true,
+    "mae": 0.0
+   }
   },
   {
    "year": 2026,
@@ -250,7 +323,13 @@
    "pred_winner": "NOR",
    "actual_winner": "NOR",
    "winner_correct": true,
-   "mae": 0.909
+   "mae": 1.091,
+   "unseen": true,
+   "grid": {
+    "podium_hits": 3,
+    "winner_correct": true,
+    "mae": 0.0
+   }
   },
   {
    "year": 2026,
@@ -267,10 +346,16 @@
     "RUS"
    ],
    "podium_hits": 3,
-   "pred_winner": "NOR",
+   "pred_winner": "RUS",
    "actual_winner": "NOR",
-   "winner_correct": true,
-   "mae": 0.455
+   "winner_correct": false,
+   "mae": 0.545,
+   "unseen": true,
+   "grid": {
+    "podium_hits": 3,
+    "winner_correct": true,
+    "mae": 2.818
+   }
   },
   {
    "year": 2026,
@@ -287,10 +372,16 @@
     "VER"
    ],
    "podium_hits": 3,
-   "pred_winner": "ANT",
+   "pred_winner": "RUS",
    "actual_winner": "ANT",
-   "winner_correct": true,
-   "mae": 0.364
+   "winner_correct": false,
+   "mae": 0.545,
+   "unseen": true,
+   "grid": {
+    "podium_hits": 1,
+    "winner_correct": false,
+    "mae": 2.818
+   }
   },
   {
    "year": 2026,
@@ -307,10 +398,16 @@
     "VER"
    ],
    "podium_hits": 3,
-   "pred_winner": "NOR",
+   "pred_winner": "ANT",
    "actual_winner": "ANT",
-   "winner_correct": false,
-   "mae": 0.4
+   "winner_correct": true,
+   "mae": 0.4,
+   "unseen": true,
+   "grid": {
+    "podium_hits": 3,
+    "winner_correct": false,
+    "mae": 0.8
+   }
   },
   {
    "year": 2026,
@@ -330,8 +427,13 @@
    "pred_winner": "RUS",
    "actual_winner": "RUS",
    "winner_correct": true,
-   "mae": 0.909
+   "mae": 1.455,
+   "unseen": true,
+   "grid": {
+    "podium_hits": 1,
+    "winner_correct": true,
+    "mae": 5.0
+   }
   }
- ],
- "source": "Interim: computed from the public repo copy of features.csv. Replaced by the Raspberry Pi's own run."
+ ]
 }
