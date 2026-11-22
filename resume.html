@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Shlok Singh, resume</title>
+<meta name="robots" content="noindex">
+<style>
+  @page { size: A4; margin: 10mm 12mm; }
+  * { box-sizing: border-box; }
+  body { margin: 0 auto; max-width: 190mm; padding: 10mm 0; background: #fff; color: #0a0a0a; font: 9.5pt/1.34 Georgia, "Times New Roman", serif; }
+  h1 { margin: 0; font-size: 20pt; font-weight: 600; letter-spacing: -.01em; text-align: center; }
+  .contact { margin-top: 3px; text-align: center; font-size: 9.2pt; color: #333; }
+  .contact a { color: inherit; text-decoration: none; border-bottom: 1px solid #bbb; }
+  h2 { margin: 9px 0 3px; padding-bottom: 1px; border-bottom: 1px solid #0a0a0a; font-size: 9.5pt; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; }
+  .row { display: flex; justify-content: space-between; gap: 12px; }
+  .row b { font-weight: 600; }
+  .row i { color: #333; white-space: nowrap; }
+  .sub { color: #333; font-style: italic; }
+  ul { margin: 1px 0 2px; padding-left: 14px; }
+  li { margin: 0; }
+  .proj { margin-top: 3px; }
+  p { margin: 1px 0; }
+  .skills b { font-weight: 600; }
+  @media print { body { padding: 0; } a { border: 0 !important; } }
+</style>
+</head>
+<body>
+<h1>Shlok Singh</h1>
+<div class="contact">Dehradun, India &nbsp;|&nbsp; <a href="mailto:singhshlok720@gmail.com">singhshlok720@gmail.com</a> &nbsp;|&nbsp; <a href="https://github.com/ShlokisAFK">github.com/ShlokisAFK</a> &nbsp;|&nbsp; <a href="https://www.linkedin.com/in/shlokisafk/">linkedin.com/in/shlokisafk</a> &nbsp;|&nbsp; <a href="https://shlokisafk.github.io/">shlokisafk.github.io</a></div>
+
+<h2>Summary</h2>
+<p>Third-year B.Tech CSE (AI &amp; ML) student who builds and deploys ML systems end-to-end: CNN malware classifier, XGBoost race predictor, LLM agent. Seeking an ML/AI internship to work on model development and improvement.</p>
+
+<h2>Education</h2>
+<div class="row"><span><b>University of Petroleum and Energy Studies (UPES)</b>, Dehradun, India</span><i>Expected May 2028</i></div>
+<div class="sub">B.Tech in Computer Science Engineering, AI &amp; ML Specialization. CGPA: 7.74 / 10.0</div>
+
+<h2>Technical skills</h2>
+<p class="skills"><b>Languages:</b> Python, C, Java, HTML, CSS</p>
+<p class="skills"><b>ML &amp; frameworks:</b> PyTorch, TensorFlow, XGBoost, Scikit-Learn, Pandas, NumPy</p>
+<p class="skills"><b>Core competencies:</b> Deep Learning, Computer Vision, Machine Learning, Linear Algebra, Data Structures &amp; Algorithms</p>
+<p class="skills"><b>Developer tools:</b> Git, Linux, FastAPI, REST APIs, Groq API, Tavily API, Raspberry Pi</p>
+
+<h2>Projects</h2>
+<div class="proj"><div class="row"><span><b>Malware Binary Classifier</b> <span class="sub">| PyTorch, ResNet18, GoogLeNet, VAE</span></span><i>2026</i></div>
+<ul>
+<li>Classified 25 malware families by converting binaries into grayscale image representations and training CNN architectures.</li>
+<li>Benchmarked ResNet18, GoogLeNet, LSTM, and MLP baselines; augmented training data using a variational autoencoder (VAE).</li>
+<li>Achieved 98.12% test accuracy with ResNet18, outperforming the MLP baseline by 2.5 percentage points.</li>
+</ul></div>
+<div class="proj"><div class="row"><span><b>PitWall: F1 Race Predictor</b> <span class="sub">| XGBoost, FastAPI, Raspberry Pi | pitwal.site</span></span><i>2026</i></div>
+<ul>
+<li>Built an end-to-end race prediction pipeline using XGBoost trained on 4 seasons of historical data (1,836 rows).</li>
+<li>Engineered features: driver form, team form, circuit history, qualifying gap to pole.</li>
+<li>Scored the live model on the 12 races of 2026 run after it was last trained: 94.4% podium accuracy (34 of 36 podium places), 7 of 12 winners, 0.87 mean position error, against 80.6%, 10 of 12 and 1.67 for a starting-grid baseline.</li>
+<li>Self-hosted live on a Raspberry Pi 5: FastAPI behind nginx and a Cloudflare Tunnel.</li>
+</ul></div>
+<div class="proj"><div class="row"><span><b>MNIST Digit Classifier from Scratch</b> <span class="sub">| Python, NumPy</span></span><i>2025</i></div>
+<ul>
+<li>Implemented a multi-layer neural network entirely from scratch in Python with no ML libraries.</li>
+<li>Manually coded forward pass, activation functions, and backpropagation calculus; achieved 90.78% validation accuracy on 60k samples.</li>
+</ul></div>
+<div class="proj"><div class="row"><span><b>Autonomous AI Agent</b> <span class="sub">| Python, Groq API, LLaMA, Tavily</span></span><i>2026</i></div>
+<ul>
+<li>Built a CLI conversational agent with LLaMA via Groq and Tavily-powered real-time web search, with persistent JSON memory across sessions.</li>
+<li>Designed an extensible tool registry pattern so new tools plug in without modifying core agent logic.</li>
+</ul></div>
+<div class="proj"><div class="row"><span><b>HeatSeek: Adaptive AI Hide-and-Seek</b> <span class="sub">| Python, pygame, NumPy, BFS</span></span><i>2025</i></div>
+<ul>
+<li>Built a 2D game with a seeker agent that accumulates cross-session heatmaps of player position frequency using NumPy.</li>
+<li>Implemented BFS pathfinding with 70/30 explore/exploit balance and line-of-sight detection for real-time spatial reasoning.</li>
+</ul></div>
+<div class="proj"><div class="row"><span><b>DailyPulse</b> <span class="sub">| Python, cron, REST APIs</span></span><i>2025</i></div>
+<ul><li>Automated daily email digest tracking gold/silver prices, F1 schedule, and news via scheduled cron job.</li></ul></div>
+
+<h2>Experience</h2>
+<div class="row"><span><b>Municipal Corporation Mathura Vrindavan</b>, Mathura, India</span><i>Jun 2026 &ndash; Jul 2026</i></div>
+<div class="sub">TULIP Intern, AICTE / MoHUA</div>
+<ul>
+<li>Documented end-to-end municipal technology infrastructure including waste management software and automated traffic enforcement workflows.</li>
+<li>Compiled analytical reports on processing efficiency; received formal completion certificate from the Commissioner.</li>
+</ul>
+
+<h2>Certifications &amp; activities</h2>
+<p><b>Participant:</b> Logic Maze Algorithmic and Logic Contest, UPES</p>
+<p><b>Certification:</b> Srijan Social Internship Certificate, UPES (2024)</p>
+</body>
+</html>
