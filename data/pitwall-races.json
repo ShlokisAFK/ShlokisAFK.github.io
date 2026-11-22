@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-11-22T06:57:21Z",
+ "generated_at": "2026-11-22T07:17:05Z",
  "season": 2026,
  "method": "The live model scored every race of the season. Only races after its last training are counted.",
  "model": {
@@ -8,40 +8,40 @@
  },
  "summary": {
   "unseen": {
-   "races": 12,
-   "podium_slots_hit": 34,
-   "podium_slots_total": 36,
-   "podium_accuracy_pct": 94.4,
-   "winners_correct": 7,
-   "winner_accuracy_pct": 58.3,
-   "mean_position_error": 0.87
+   "races": 17,
+   "podium_slots_hit": 42,
+   "podium_slots_total": 51,
+   "podium_accuracy_pct": 82.4,
+   "winners_correct": 10,
+   "winner_accuracy_pct": 58.8,
+   "mean_position_error": 1.07
   },
   "all": {
-   "races": 15,
-   "podium_slots_hit": 42,
-   "podium_slots_total": 45,
-   "podium_accuracy_pct": 93.3,
-   "winners_correct": 9,
+   "races": 20,
+   "podium_slots_hit": 50,
+   "podium_slots_total": 60,
+   "podium_accuracy_pct": 83.3,
+   "winners_correct": 12,
    "winner_accuracy_pct": 60.0,
-   "mean_position_error": 1.04
+   "mean_position_error": 1.22
   },
   "grid_baseline_unseen": {
-   "races": 12,
-   "podium_slots_hit": 29,
-   "podium_slots_total": 36,
-   "podium_accuracy_pct": 80.6,
-   "winners_correct": 10,
-   "winner_accuracy_pct": 83.3,
-   "mean_position_error": 1.67
+   "races": 17,
+   "podium_slots_hit": 37,
+   "podium_slots_total": 51,
+   "podium_accuracy_pct": 72.5,
+   "winners_correct": 14,
+   "winner_accuracy_pct": 82.4,
+   "mean_position_error": 2.15
   },
   "grid_baseline_all": {
-   "races": 15,
-   "podium_slots_hit": 36,
-   "podium_slots_total": 45,
-   "podium_accuracy_pct": 80.0,
-   "winners_correct": 13,
-   "winner_accuracy_pct": 86.7,
-   "mean_position_error": 2.05
+   "races": 20,
+   "podium_slots_hit": 44,
+   "podium_slots_total": 60,
+   "podium_accuracy_pct": 73.3,
+   "winners_correct": 17,
+   "winner_accuracy_pct": 85.0,
+   "mean_position_error": 2.36
   }
  },
  "races": [
@@ -63,7 +63,7 @@
    "pred_winner": "RUS",
    "actual_winner": "RUS",
    "winner_correct": true,
-   "mae": 3.545,
+   "mae": 3.909,
    "unseen": false,
    "grid": {
     "podium_hits": 2,
@@ -89,7 +89,7 @@
    "pred_winner": "RUS",
    "actual_winner": "ANT",
    "winner_correct": false,
-   "mae": 1.182,
+   "mae": 1.364,
    "unseen": false,
    "grid": {
     "podium_hits": 3,
@@ -115,7 +115,7 @@
    "pred_winner": "ANT",
    "actual_winner": "ANT",
    "winner_correct": true,
-   "mae": 0.545,
+   "mae": 0.909,
    "unseen": false,
    "grid": {
     "podium_hits": 2,
@@ -138,10 +138,10 @@
     "PIA"
    ],
    "podium_hits": 3,
-   "pred_winner": "ANT",
+   "pred_winner": "NOR",
    "actual_winner": "ANT",
-   "winner_correct": true,
-   "mae": 0.273,
+   "winner_correct": false,
+   "mae": 0.364,
    "unseen": true,
    "grid": {
     "podium_hits": 1,
@@ -156,17 +156,17 @@
    "pred_podium": [
     "ANT",
     "HAM",
-    "LEC"
+    "VER"
    ],
    "actual_podium": [
     "ANT",
     "HAM",
     "VER"
    ],
-   "podium_hits": 2,
-   "pred_winner": "HAM",
+   "podium_hits": 3,
+   "pred_winner": "ANT",
    "actual_winner": "ANT",
-   "winner_correct": false,
+   "winner_correct": true,
    "mae": 1.091,
    "unseen": true,
    "grid": {
@@ -190,10 +190,10 @@
     "HAM"
    ],
    "podium_hits": 3,
-   "pred_winner": "GAS",
+   "pred_winner": "HAM",
    "actual_winner": "ANT",
    "winner_correct": false,
-   "mae": 1.818,
+   "mae": 1.0,
    "unseen": true,
    "grid": {
     "podium_hits": 2,
@@ -219,7 +219,7 @@
    "pred_winner": "HAM",
    "actual_winner": "HAM",
    "winner_correct": true,
-   "mae": 0.727,
+   "mae": 1.182,
    "unseen": true,
    "grid": {
     "podium_hits": 3,
@@ -232,7 +232,7 @@
    "round": 8,
    "race": "Austrian Grand Prix",
    "pred_podium": [
-    "ANT",
+    "PIA",
     "RUS",
     "VER"
    ],
@@ -241,11 +241,11 @@
     "RUS",
     "VER"
    ],
-   "podium_hits": 3,
+   "podium_hits": 2,
    "pred_winner": "RUS",
    "actual_winner": "RUS",
    "winner_correct": true,
-   "mae": 0.727,
+   "mae": 1.364,
    "unseen": true,
    "grid": {
     "podium_hits": 3,
@@ -260,18 +260,18 @@
    "pred_podium": [
     "HAM",
     "LEC",
-    "RUS"
+    "NOR"
    ],
    "actual_podium": [
     "HAM",
     "LEC",
     "RUS"
    ],
-   "podium_hits": 3,
+   "podium_hits": 2,
    "pred_winner": "LEC",
    "actual_winner": "LEC",
    "winner_correct": true,
-   "mae": 0.818,
+   "mae": 1.091,
    "unseen": true,
    "grid": {
     "podium_hits": 3,
@@ -285,19 +285,19 @@
    "race": "Belgian Grand Prix",
    "pred_podium": [
     "ANT",
-    "LEC",
-    "VER"
+    "HAM",
+    "LEC"
    ],
    "actual_podium": [
     "ANT",
     "LEC",
     "VER"
    ],
-   "podium_hits": 3,
+   "podium_hits": 2,
    "pred_winner": "LEC",
    "actual_winner": "ANT",
    "winner_correct": false,
-   "mae": 0.909,
+   "mae": 1.0,
    "unseen": true,
    "grid": {
     "podium_hits": 3,
@@ -323,7 +323,7 @@
    "pred_winner": "NOR",
    "actual_winner": "NOR",
    "winner_correct": true,
-   "mae": 1.091,
+   "mae": 1.273,
    "unseen": true,
    "grid": {
     "podium_hits": 3,
@@ -337,7 +337,7 @@
    "race": "Dutch Grand Prix",
    "pred_podium": [
     "ANT",
-    "NOR",
+    "LEC",
     "RUS"
    ],
    "actual_podium": [
@@ -345,11 +345,11 @@
     "NOR",
     "RUS"
    ],
-   "podium_hits": 3,
-   "pred_winner": "RUS",
+   "podium_hits": 2,
+   "pred_winner": "ANT",
    "actual_winner": "NOR",
    "winner_correct": false,
-   "mae": 0.545,
+   "mae": 1.182,
    "unseen": true,
    "grid": {
     "podium_hits": 3,
@@ -372,10 +372,10 @@
     "VER"
    ],
    "podium_hits": 3,
-   "pred_winner": "RUS",
+   "pred_winner": "ANT",
    "actual_winner": "ANT",
-   "winner_correct": false,
-   "mae": 0.545,
+   "winner_correct": true,
+   "mae": 0.455,
    "unseen": true,
    "grid": {
     "podium_hits": 1,
@@ -388,8 +388,8 @@
    "round": 14,
    "race": "Spanish Grand Prix",
    "pred_podium": [
-    "ANT",
     "NOR",
+    "RUS",
     "VER"
    ],
    "actual_podium": [
@@ -397,11 +397,11 @@
     "NOR",
     "VER"
    ],
-   "podium_hits": 3,
-   "pred_winner": "ANT",
+   "podium_hits": 2,
+   "pred_winner": "VER",
    "actual_winner": "ANT",
-   "winner_correct": true,
-   "mae": 0.4,
+   "winner_correct": false,
+   "mae": 0.667,
    "unseen": true,
    "grid": {
     "podium_hits": 3,
@@ -414,7 +414,7 @@
    "round": 15,
    "race": "Azerbaijan Grand Prix",
    "pred_podium": [
-    "ANT",
+    "LEC",
     "RUS",
     "VER"
    ],
@@ -433,6 +433,136 @@
     "podium_hits": 1,
     "winner_correct": true,
     "mae": 5.0
+   }
+  },
+  {
+   "year": 2026,
+   "round": 16,
+   "race": "Bahrain Grand Prix",
+   "pred_podium": [
+    "ANT",
+    "LEC",
+    "VER"
+   ],
+   "actual_podium": [
+    "ANT",
+    "HAM",
+    "VER"
+   ],
+   "podium_hits": 2,
+   "pred_winner": "ANT",
+   "actual_winner": "VER",
+   "winner_correct": false,
+   "mae": 1.273,
+   "unseen": true,
+   "grid": {
+    "podium_hits": 2,
+    "winner_correct": true,
+    "mae": 3.545
+   }
+  },
+  {
+   "year": 2026,
+   "round": 17,
+   "race": "Singapore Grand Prix",
+   "pred_podium": [
+    "ANT",
+    "LEC",
+    "VER"
+   ],
+   "actual_podium": [
+    "ANT",
+    "LEC",
+    "VER"
+   ],
+   "podium_hits": 3,
+   "pred_winner": "VER",
+   "actual_winner": "VER",
+   "winner_correct": true,
+   "mae": 0.182,
+   "unseen": true,
+   "grid": {
+    "podium_hits": 2,
+    "winner_correct": true,
+    "mae": 2.455
+   }
+  },
+  {
+   "year": 2026,
+   "round": 18,
+   "race": "United States Grand Prix",
+   "pred_podium": [
+    "ANT",
+    "HAM",
+    "LEC"
+   ],
+   "actual_podium": [
+    "ANT",
+    "LEC",
+    "VER"
+   ],
+   "podium_hits": 2,
+   "pred_winner": "LEC",
+   "actual_winner": "ANT",
+   "winner_correct": false,
+   "mae": 1.636,
+   "unseen": true,
+   "grid": {
+    "podium_hits": 2,
+    "winner_correct": true,
+    "mae": 2.091
+   }
+  },
+  {
+   "year": 2026,
+   "round": 19,
+   "race": "Mexico City Grand Prix",
+   "pred_podium": [
+    "HAM",
+    "LEC",
+    "VER"
+   ],
+   "actual_podium": [
+    "ANT",
+    "HAM",
+    "VER"
+   ],
+   "podium_hits": 2,
+   "pred_winner": "VER",
+   "actual_winner": "VER",
+   "winner_correct": true,
+   "mae": 1.182,
+   "unseen": true,
+   "grid": {
+    "podium_hits": 1,
+    "winner_correct": false,
+    "mae": 4.273
+   }
+  },
+  {
+   "year": 2026,
+   "round": 20,
+   "race": "S\u00e3o Paulo Grand Prix",
+   "pred_podium": [
+    "HAD",
+    "NOR",
+    "VER"
+   ],
+   "actual_podium": [
+    "HAD",
+    "NOR",
+    "VER"
+   ],
+   "podium_hits": 3,
+   "pred_winner": "NOR",
+   "actual_winner": "NOR",
+   "winner_correct": true,
+   "mae": 1.727,
+   "unseen": true,
+   "grid": {
+    "podium_hits": 1,
+    "winner_correct": true,
+    "mae": 4.182
    }
   }
  ]
