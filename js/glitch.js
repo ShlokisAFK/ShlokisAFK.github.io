@@ -170,7 +170,7 @@
   if (band) {
     const box = document.createElement('div');
     box.className = 'errs errs-band'; box.setAttribute('aria-hidden', 'true');
-    makeZone({ box, host: band, avoid: () => ['#contact h2', '.band-sub', '.cmd', '.foot'], slots: small ? 2 : 4, dark: true, rate: .09 });
+    makeZone({ box, host: band, avoid: () => ['#contact h2', '.band-sub', '.cmd', '.foot'], slots: small ? 2 : 4, dark: true, rate: .015 });
   }
   const hero = document.getElementById('hero');
   if (hero) {
@@ -179,7 +179,7 @@
     const fit = () => { box.style.height = hero.offsetHeight + 'px'; };
     fit(); addEventListener('resize', fit);
     document.body.append(box);
-    makeZone({ box, host: hero, avoid: () => ['.nav', '.display .ln', '.hero-sub', '.ping-line', '.pause'], slots: small ? 1 : 2, dark: false, rate: .06, minY: small ? 90 : 140 });
+    makeZone({ box, host: hero, avoid: () => ['.nav', '.display .ln', '.hero-sub', '.ping-line', '.pause'], slots: small ? 1 : 2, dark: false, rate: .01, minY: small ? 90 : 140 });
   }
 
   /* 3. the headline gets overwritten, long enough to read ---------------------------------------- */
@@ -199,8 +199,8 @@
       setTimeout(() => h.classList.add('tko-read'), 450);                       // then it settles so it can be read
       setTimeout(() => h.classList.remove('tko-read'), hold - 450);             // and tears again on the way out
       setTimeout(() => h.classList.remove('tko'), hold);
-      setTimeout(run, hold + rand(22000, 36000));
+      setTimeout(run, hold + rand(90000, 130000));
     };
-    setTimeout(run, rand(8000, 12000));
+    setTimeout(run, rand(25000, 30000));
   })();
 })();
