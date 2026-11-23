@@ -1,25 +1,25 @@
 {
- "generated_at": "2026-11-22T07:46:50Z",
+ "generated_at": "2026-11-23T01:45:08Z",
  "season": 2026,
  "method": "Walk-forward: each race is predicted by a model trained only on the races before it.",
  "summary": {
   "model": {
-   "races": 20,
-   "podium_slots_hit": 36,
-   "podium_slots_total": 60,
-   "podium_accuracy_pct": 60.0,
-   "winners_correct": 15,
-   "winner_accuracy_pct": 75.0,
-   "mean_position_error": 3.58
+   "races": 21,
+   "podium_slots_hit": 35,
+   "podium_slots_total": 63,
+   "podium_accuracy_pct": 55.6,
+   "winners_correct": 11,
+   "winner_accuracy_pct": 52.4,
+   "mean_position_error": 3.57
   },
   "grid_baseline": {
-   "races": 20,
-   "podium_slots_hit": 44,
-   "podium_slots_total": 60,
-   "podium_accuracy_pct": 73.3,
+   "races": 21,
+   "podium_slots_hit": 45,
+   "podium_slots_total": 63,
+   "podium_accuracy_pct": 71.4,
    "winners_correct": 17,
-   "winner_accuracy_pct": 85.0,
-   "mean_position_error": 2.36
+   "winner_accuracy_pct": 81.0,
+   "mean_position_error": 2.46
   }
  },
  "races": [
@@ -41,7 +41,7 @@
    "pred_winner": "RUS",
    "actual_winner": "RUS",
    "winner_correct": true,
-   "mae": 4.364,
+   "mae": 4.273,
    "grid": {
     "podium_hits": 2,
     "winner_correct": true,
@@ -66,7 +66,7 @@
    "pred_winner": "ANT",
    "actual_winner": "ANT",
    "winner_correct": true,
-   "mae": 4.455,
+   "mae": 4.364,
    "grid": {
     "podium_hits": 3,
     "winner_correct": true,
@@ -91,7 +91,7 @@
    "pred_winner": "ANT",
    "actual_winner": "ANT",
    "winner_correct": true,
-   "mae": 2.091,
+   "mae": 2.0,
    "grid": {
     "podium_hits": 2,
     "winner_correct": true,
@@ -105,18 +105,18 @@
    "pred_podium": [
     "ANT",
     "LEC",
-    "NOR"
+    "RUS"
    ],
    "actual_podium": [
     "ANT",
     "NOR",
     "PIA"
    ],
-   "podium_hits": 2,
+   "podium_hits": 1,
    "pred_winner": "ANT",
    "actual_winner": "ANT",
    "winner_correct": true,
-   "mae": 4.0,
+   "mae": 4.182,
    "grid": {
     "podium_hits": 1,
     "winner_correct": true,
@@ -138,10 +138,10 @@
     "VER"
    ],
    "podium_hits": 2,
-   "pred_winner": "ANT",
+   "pred_winner": "HAM",
    "actual_winner": "ANT",
-   "winner_correct": true,
-   "mae": 4.727,
+   "winner_correct": false,
+   "mae": 4.909,
    "grid": {
     "podium_hits": 3,
     "winner_correct": true,
@@ -166,7 +166,7 @@
    "pred_winner": "ANT",
    "actual_winner": "ANT",
    "winner_correct": true,
-   "mae": 5.364,
+   "mae": 5.545,
    "grid": {
     "podium_hits": 2,
     "winner_correct": true,
@@ -180,18 +180,18 @@
    "pred_podium": [
     "ANT",
     "HAM",
-    "RUS"
+    "LEC"
    ],
    "actual_podium": [
     "HAM",
     "NOR",
     "RUS"
    ],
-   "podium_hits": 2,
+   "podium_hits": 1,
    "pred_winner": "ANT",
    "actual_winner": "HAM",
    "winner_correct": false,
-   "mae": 3.727,
+   "mae": 3.818,
    "grid": {
     "podium_hits": 3,
     "winner_correct": true,
@@ -205,18 +205,18 @@
    "pred_podium": [
     "HAD",
     "HAM",
-    "VER"
+    "LEC"
    ],
    "actual_podium": [
     "ANT",
     "RUS",
     "VER"
    ],
-   "podium_hits": 1,
+   "podium_hits": 0,
    "pred_winner": "HAM",
    "actual_winner": "RUS",
    "winner_correct": false,
-   "mae": 3.545,
+   "mae": 3.364,
    "grid": {
     "podium_hits": 3,
     "winner_correct": true,
@@ -241,7 +241,7 @@
    "pred_winner": "HAM",
    "actual_winner": "LEC",
    "winner_correct": false,
-   "mae": 5.182,
+   "mae": 4.455,
    "grid": {
     "podium_hits": 3,
     "winner_correct": true,
@@ -266,7 +266,7 @@
    "pred_winner": "RUS",
    "actual_winner": "ANT",
    "winner_correct": false,
-   "mae": 4.091,
+   "mae": 3.909,
    "grid": {
     "podium_hits": 3,
     "winner_correct": true,
@@ -278,9 +278,9 @@
    "round": 11,
    "race": "Hungarian Grand Prix",
    "pred_podium": [
+    "HAM",
     "LEC",
-    "NOR",
-    "PIA"
+    "NOR"
    ],
    "actual_podium": [
     "ANT",
@@ -288,9 +288,9 @@
     "VER"
    ],
    "podium_hits": 1,
-   "pred_winner": "NOR",
+   "pred_winner": "LEC",
    "actual_winner": "NOR",
-   "winner_correct": true,
+   "winner_correct": false,
    "mae": 3.182,
    "grid": {
     "podium_hits": 3,
@@ -316,7 +316,7 @@
    "pred_winner": "NOR",
    "actual_winner": "NOR",
    "winner_correct": true,
-   "mae": 2.909,
+   "mae": 3.0,
    "grid": {
     "podium_hits": 3,
     "winner_correct": true,
@@ -338,9 +338,9 @@
     "VER"
    ],
    "podium_hits": 1,
-   "pred_winner": "ANT",
+   "pred_winner": "GAS",
    "actual_winner": "ANT",
-   "winner_correct": true,
+   "winner_correct": false,
    "mae": 2.727,
    "grid": {
     "podium_hits": 1,
@@ -391,7 +391,7 @@
    "pred_winner": "RUS",
    "actual_winner": "RUS",
    "winner_correct": true,
-   "mae": 5.273,
+   "mae": 5.091,
    "grid": {
     "podium_hits": 1,
     "winner_correct": true,
@@ -416,7 +416,7 @@
    "pred_winner": "VER",
    "actual_winner": "VER",
    "winner_correct": true,
-   "mae": 3.909,
+   "mae": 3.636,
    "grid": {
     "podium_hits": 2,
     "winner_correct": true,
@@ -463,9 +463,9 @@
     "VER"
    ],
    "podium_hits": 3,
-   "pred_winner": "ANT",
+   "pred_winner": "VER",
    "actual_winner": "ANT",
-   "winner_correct": true,
+   "winner_correct": false,
    "mae": 2.273,
    "grid": {
     "podium_hits": 2,
@@ -516,11 +516,36 @@
    "pred_winner": "NOR",
    "actual_winner": "NOR",
    "winner_correct": true,
-   "mae": 1.909,
+   "mae": 2.091,
    "grid": {
     "podium_hits": 1,
     "winner_correct": true,
     "mae": 4.182
+   }
+  },
+  {
+   "year": 2026,
+   "round": 21,
+   "race": "Las Vegas Grand Prix",
+   "pred_podium": [
+    "ANT",
+    "NOR",
+    "VER"
+   ],
+   "actual_podium": [
+    "NOR",
+    "PIA",
+    "VER"
+   ],
+   "podium_hits": 2,
+   "pred_winner": "ANT",
+   "actual_winner": "VER",
+   "winner_correct": false,
+   "mae": 4.182,
+   "grid": {
+    "podium_hits": 1,
+    "winner_correct": false,
+    "mae": 4.364
    }
   }
  ]
