@@ -12,68 +12,108 @@
   const BAYER = [[0, 8, 2, 10], [12, 4, 14, 6], [3, 11, 1, 9], [15, 7, 13, 5]].map(r => r.map(v => (v + .5) / 16));
 
   /* 1. corruption hanging from the top of the page ---------------------------------------------- */
+  /* Same language as the Blackwall edge at the foot of the page (js/edge.js): an uneven ink lip under the nav that
+     dissolves downward as ordered-dither dots, fine data-streaks that fall out of it and stretch on each beat,
+     and a thin seam line that pulses like a heartbeat with a bright blip travelling along it. */
   (() => {
     const cv = document.createElement('canvas');
     cv.className = 'topfall'; cv.setAttribute('aria-hidden', 'true');
     document.body.append(cv);
     const g = cv.getContext('2d');
     const CELL = 3;
-    let w = 0, H = 0, cols = [], dCols = 0, dRows = 0, dPatch, dPhase, dRnd;
+    let w = 0, H = 0, rows = 0, cols = 0, base, patch, phase, rnd, S;
     let burst = null, nextBurst = 2.5, tear = null, nextTear = 2;
 
     const setup = () => {
       const small = innerWidth < 700;
-      w = document.documentElement.clientWidth; H = small ? 120 : 210;
+      w = document.documentElement.clientWidth; H = small ? 80 : 130;
       const dpr = Math.min(devicePixelRatio || 1, 2);
       cv.width = Math.round(w * dpr); cv.height = Math.round(H * dpr);
       cv.style.height = H + 'px';
       g.setTransform(dpr, 0, 0, dpr, 0, 0);
-      cols = [];
-      for (let x = rand(0, 10); x < w; x += rand(6, 13)) {
-        if (Math.random() < .35) continue;
-        cols.push({ x: Math.round(x), speed: rand(16, 52), period: rand(24, 76), len: rand(6, 20), off: rand(0, 90), amp: rand(.16, .38), reach: rand(.55, 1) });
+      cols = Math.ceil(w / CELL); rows = Math.floor(H / CELL);
+      base = new Float32Array(cols); patch = new Float32Array(cols); phase = new Float32Array(cols);
+      rnd = new Float32Array(cols * rows);
+      const ph = [rand(0, 6), rand(0, 6), rand(0, 6)];
+      for (let c = 0, v = 0; c < cols; c++) {
+        if (c % 9 === 0) v = Math.random() < .35 ? rand(.6, 2) : rand(0, .5);   // clumps of columns that bleed further down
+        patch[c] = v; phase[c] = rand(0, 6.28);
+        const x = c / cols * 6.28;
+        // the lip: a few cells of solid ink under the nav, uneven along its length
+        base[c] = rows * (.04 + .02 * Math.sin(x * 3 + ph[0]) + .02 * Math.sin(x * 9 + ph[1]) + .015 * Math.sin(x * 23 + ph[2])) + (Math.random() - .5) * 1.4;
       }
-      // dust clinging to the top: dense at the nav, thinning out downward, in uneven clumps
-      dCols = Math.ceil(w / CELL); dRows = small ? 10 : 18;
-      dPatch = new Float32Array(dCols); dPhase = new Float32Array(dCols); dRnd = new Float32Array(dCols * dRows);
-      for (let c = 0, v = 0; c < dCols; c++) { if (c % 8 === 0) v = Math.random() < .4 ? rand(.8, 2) : rand(0, .6); dPatch[c] = v; dPhase[c] = rand(0, 6.28); }
-      for (let i = 0; i < dRnd.length; i++) dRnd[i] = Math.random();
+      for (let i = 0; i < rnd.length; i++) rnd[i] = Math.random();
+      // data streaks: some columns carry a stream of dashes that falls out of the lip
+      S = [];
+      for (let c = 0; c < cols; c++) {
+        if (Math.random() > .22 + patch[c] * .16) continue;
+        S.push({ c, speed: rand(6, 22), period: 7 + Math.floor(rand(0, 12)), len: 2 + Math.floor(rand(0, 4)), off: rand(0, 20), reach: rows * (.5 + rand(0, .5)) + patch[c] * 3 });
+      }
     };
+
+    // two quick beats, then rest (offset so it does not pulse in step with the foot of the page)
+    const beat = (t) => { const m = (t + .9) % 1.8; return Math.exp(-(((m - .12) / .05) ** 2)) + .6 * Math.exp(-(((m - .34) / .06) ** 2)); };
 
     const frame = (t) => {
       g.clearRect(0, 0, w, H);
+      const hb = beat(t);
       if (tear && t > tear.end) tear = null;
-      if (!tear && t > nextTear) { tear = { y: Math.floor(rand(0, dRows * .8)), h: 1 + Math.floor(rand(0, 3)), dx: (Math.random() < .5 ? -1 : 1) * Math.floor(rand(3, 10)), end: t + .14 }; nextTear = t + rand(2, 4.5); }
+      if (!tear && t > nextTear) { tear = { y: Math.floor(rand(0, rows * .5)), h: 1 + Math.floor(rand(0, 3)), dx: (Math.random() < .5 ? -1 : 1) * Math.floor(rand(3, 10)), end: t + .14 }; nextTear = t + rand(2, 4.5); }
       if (burst && t > burst.end) burst = null;
       if (!burst && t > nextBurst) { const x0 = rand(0, w * .85); burst = { x0, x1: x0 + rand(80, 260), end: t + rand(.6, 1.2) }; nextBurst = t + rand(4, 8); }
 
-      // dither dust
+      // dither: ink on paper, thickest at the nav, thinning downward
       g.fillStyle = INK;
-      for (let c = 0; c < dCols; c++) {
-        const swell = 1 + .4 * Math.sin(c * .03 - t * .6 + dPhase[c] * .2);
-        const reach = (4 + dPatch[c] * 7) * swell;
+      for (let c = 0; c < cols; c++) {
+        const swell = 1 + .45 * Math.sin(c * .035 - t * .7 + phase[c] * .15);   // slow wave: the bleed swells and recedes
         const hot = burst && c * CELL >= burst.x0 && c * CELL <= burst.x1 ? 1.6 : 1;
-        for (let r = 0; r < dRows; r++) {
-          const k = dRnd[c * dRows + r];
-          const thr = BAYER[r & 3][c & 3] + .12 * Math.sin(t * .8 + dPhase[c] + r);
-          if (Math.exp(-r / (reach * hot)) * .5 <= thr || k < .15) continue;
-          const dx = tear && r >= tear.y && r < tear.y + tear.h ? tear.dx : 0;
-          g.globalAlpha = .62 - (r / dRows) * .35;
-          g.fillRect(c * CELL + dx, r * CELL, CELL, CELL);
+        const reach = (3 + patch[c] * rows * .16) * swell * hot;
+        const col = c * rows;
+        for (let y = 0; y < rows; y++) {
+          const d = y - base[c], k = rnd[col + y];
+          let on = d <= 0;
+          if (!on) {
+            const thr = BAYER[y & 3][c & 3] + .12 * Math.sin(t * .9 + phase[c] + y);
+            on = Math.exp(-d / reach) * .95 > thr && k > .08;
+            if (!on && k > .988 && (k * 977) % 1 < 1 - d / rows) on = true;   // stray dots
+          }
+          if (!on) continue;
+          const dx = tear && y >= tear.y && y < tear.y + tear.h ? tear.dx : 0;
+          g.globalAlpha = .7 - (y / rows) * .3;
+          g.fillRect(c * CELL + dx, y * CELL, CELL, CELL);
         }
       }
 
-      // falling streaks
-      for (const c of cols) {
-        const boost = burst && c.x >= burst.x0 && c.x <= burst.x1 ? 1.8 : 1;
-        const reach = H * c.reach * (boost > 1 ? 1.15 : 1);
-        for (let y = 0; y < reach; y += 3) {
-          if ((((y - t * c.speed * boost + c.off) % c.period) + c.period) % c.period >= c.len) continue;
-          g.globalAlpha = Math.min(.75, c.amp * boost) * Math.sin(Math.PI * (.12 + .88 * y / reach)) ;   // starts firm at the top, fades out as it falls
-          g.fillRect(c.x, y, 1, 3);
+      // streaks fall out of the lip and stretch on each beat
+      const stretch = 1 + hb * .45;
+      g.fillStyle = INK;
+      for (const s of S) {
+        const b0 = base[s.c], x = s.c * CELL + (CELL >> 1);
+        const boost = burst && x >= burst.x0 && x <= burst.x1 ? 1.5 : 1;
+        const reach = s.reach * stretch * boost;
+        for (let y = Math.ceil(b0); y < b0 + reach; y++) {
+          if (((y - t * s.speed * boost + s.off) % s.period + s.period) % s.period >= s.len) continue;
+          g.globalAlpha = .6 * (1 - (y - b0) / reach);
+          g.fillRect(x, y * CELL, 1, CELL);
         }
       }
+
+      // the seam under the nav: a thin line that pulses on the beat, with a bright blip travelling along it
+      const bx = ((t * .22) % 1.3 - .15) * w;
+      for (let c = 0; c < cols; c++) {
+        const x = c * CELL, blip = Math.exp(-(((x - bx) / (w * .06)) ** 2));
+        g.globalAlpha = Math.min(1, .3 + .5 * hb + .9 * blip);
+        g.fillRect(x, 0, CELL, 1);
+      }
       g.globalAlpha = 1;
+
+      // fade out toward the bottom so nothing is cut off by the canvas edge
+      const grad = g.createLinearGradient(0, 0, 0, H);
+      grad.addColorStop(0, 'rgba(0,0,0,1)');
+      grad.addColorStop(.62, 'rgba(0,0,0,1)');
+      grad.addColorStop(1, 'rgba(0,0,0,0)');
+      g.globalCompositeOperation = 'destination-in'; g.fillStyle = grad; g.fillRect(0, 0, w, H);
+      g.globalCompositeOperation = 'source-over';
     };
 
     let raf = 0, last = 0, visible = true;
