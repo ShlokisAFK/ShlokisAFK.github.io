@@ -8,7 +8,7 @@
       return 'XGBoost F1 predictor, live on a Raspberry Pi 5.' + (p ? ` ${p.podiumPct}% podium, ${p.winners} of ${p.n} winners, ${p.err} mean position error over ${p.n} races of ${p.season}, each predicted by a model trained only on earlier races. Grid order alone: ${p.base.podiumPct}% podium.` : '');
     } },
     { id: 'malware', name: 'Malware binary classifier', line: '25 families from grayscale images. ResNet18 reaches 98.12% test accuracy, 2.5 points above the MLP baseline.', url: GH + '/malware-binary-classifier' },
-    { id: 'mnist', name: 'MNIST from scratch', line: 'NumPy only, no ML libraries. 90.78% validation accuracy on 60k samples.', url: GH + '/MNIST-Digit-Classifier' },
+    { id: 'mnist', name: 'MNIST from scratch', line: 'NumPy only, no ML libraries. 90.78% test accuracy on 60k samples.', url: GH + '/MNIST-Digit-Classifier' },
     { id: 'agent', name: 'Autonomous AI agent', line: 'LLaMA via Groq, Tavily web search, persistent memory, a tool registry.', url: GH + '/ai_agent' },
     { id: 'heatseek', name: 'HeatSeek', line: 'A seeker that learns where you hide. BFS pathfinding, 70/30 explore and exploit.', url: GH + '/HeatSeek' },
     { id: 'dailypulse', name: 'DailyPulse', line: 'Daily email digest: gold and silver prices, F1 schedule, news.', url: GH + '/DailyPulse' },
